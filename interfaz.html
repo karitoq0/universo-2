@@ -1,0 +1,768 @@
+<div class="space-background" aria-hidden="true">
+  <div id="stars"></div>
+  <div id="spaceObjects"></div>
+
+  <div class="nebula nebula-one"></div>
+  <div class="nebula nebula-two"></div>
+
+  <div class="shooting-star shooting-one"></div>
+  <div class="shooting-star shooting-two"></div>
+</div>
+
+<header class="hero" id="inicio">
+
+  <nav class="navbar">
+
+    <a class="brand" href="#inicio">
+      <span class="brand-icon">✦</span>
+      <span>ATLAS <b>CÓSMICO</b></span>
+    </a>
+
+    <div class="nav-actions">
+
+      <button id="soundButton"
+              class="icon-button"
+              type="button"
+              title="Sonido">
+        🔇
+      </button>
+
+      <button id="pauseButton"
+              class="icon-button"
+              type="button"
+              title="Pausar">
+        ⏸
+      </button>
+
+      <button id="fullscreenButton"
+              class="icon-button"
+              type="button"
+              title="Pantalla completa">
+        ⛶
+      </button>
+
+    </div>
+
+  </nav>
+
+
+  <section class="hero-content">
+
+    <div class="system-status">
+      <span class="status-dot"></span>
+      SISTEMA DE NAVEGACIÓN ACTIVO
+    </div>
+
+    <p class="eyebrow">
+      CENTRO DE EXPLORACIÓN INTERPLANETARIA
+    </p>
+
+    <h1>
+      Viaja por el
+      <span>Sistema Solar</span>
+    </h1>
+
+    <p class="hero-description">
+      Explora mundos, analiza sus condiciones, calcula cómo cambiaría
+      tu vida y descubre qué necesitaría una futura colonia humana.
+    </p>
+
+
+    <div class="hero-buttons">
+
+      <button id="startMissionButton"
+              class="primary-button"
+              type="button">
+        🚀 INICIAR EXPEDICIÓN
+      </button>
+
+      <button id="randomPlanetButton"
+              class="secondary-button"
+              type="button">
+        🎲 DESTINO ALEATORIO
+      </button>
+
+    </div>
+
+
+    <div class="hero-stats">
+
+      <div>
+        <strong>8</strong>
+        <span>PLANETAS</span>
+      </div>
+
+      <div>
+        <strong>∞</strong>
+        <span>POSIBILIDADES</span>
+      </div>
+
+      <div>
+        <strong>01</strong>
+        <span>SISTEMA SOLAR</span>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <button id="openMapButton"
+          class="floating-map-button"
+          type="button">
+    🗺️ ABRIR MAPA HOLOGRÁFICO
+  </button>
+
+</header>
+
+
+<main>
+
+  <!-- =========================================
+       EXPLORADOR
+  ========================================== -->
+
+  <section id="explorador"
+           class="explorer-section">
+
+    <div class="section-heading">
+
+      <p class="eyebrow">
+        CENTRO DE EXPLORACIÓN
+      </p>
+
+      <h2>
+        Elige tu próximo mundo
+      </h2>
+
+      <p>
+        Cada planeta contiene información científica, curiosidades,
+        eventos hipotéticos y un análisis de las posibilidades
+        de una futura misión humana.
+      </p>
+
+    </div>
+
+
+    <div id="planetSelector"
+         class="planet-selector">
+    </div>
+
+
+    <article class="planet-console">
+
+      <div class="visual-column">
+
+        <div class="planet-location">
+          <span>SECTOR</span>
+          <strong id="sectorNumber">SOL-01</strong>
+        </div>
+
+
+        <div id="scene"
+             class="planet-scene">
+
+          <div class="orbit-ring orbit-ring-one"></div>
+          <div class="orbit-ring orbit-ring-two"></div>
+          <div class="orbit-ring orbit-ring-three"></div>
+
+          <div class="planet-label">
+            <span>DESTINO</span>
+            <strong id="planetLabel">MERCURIO</strong>
+          </div>
+
+          <div id="planet"
+               class="planet mercury">
+
+            <div id="planetRing"
+                 class="planet-ring">
+            </div>
+
+            <div class="planet-shine"></div>
+
+            <div class="planet-atmosphere"></div>
+
+          </div>
+
+          <span id="planetMoon"
+                class="planet-moon">
+          </span>
+
+        </div>
+
+
+        <div class="planet-controls">
+
+          <button id="rotateLeft"
+                  type="button">
+            ↶
+          </button>
+
+          <button id="toggleRotation"
+                  class="control-main"
+                  type="button">
+            ⏸ PAUSAR ROTACIÓN
+          </button>
+
+          <button id="rotateRight"
+                  type="button">
+            ↷
+          </button>
+
+        </div>
+
+
+        <p class="drag-help">
+          ◈ Arrastra el planeta para girarlo
+        </p>
+
+
+        <div class="visual-actions">
+
+          <button id="openPlanetInfoButton"
+                  type="button">
+            📖 INFORMACIÓN
+          </button>
+
+          <button id="simulateLifeButton"
+                  type="button">
+            🧑‍🚀 SIMULAR COLONIA
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <!-- INFORMACIÓN -->
+
+      <div class="information-column">
+
+        <div class="planet-title-row">
+
+          <div>
+
+            <p id="planetType"
+               class="planet-type">
+              PLANETA ROCOSO
+            </p>
+
+            <h2 id="planetName">
+              Mercurio
+            </h2>
+
+          </div>
+
+          <span id="habitabilityBadge"
+                class="status-badge danger">
+            Extremo
+          </span>
+
+        </div>
+
+
+        <p id="planetDescription"
+           class="planet-description">
+        </p>
+
+
+        <div class="planet-meta">
+
+          <span>
+            📡 SEÑAL:
+            <b id="signalStatus">
+              ESTABLE
+            </b>
+          </span>
+
+          <span>
+            🧭 MISIÓN:
+            <b id="missionStatus">
+              ACTIVA
+            </b>
+          </span>
+
+        </div>
+
+
+        <div class="tabs">
+
+          <button class="tab-button active"
+                  data-tab="dataPanel"
+                  type="button">
+            📊 Datos
+          </button>
+
+          <button class="tab-button"
+                  data-tab="eventsPanel"
+                  type="button">
+            ⚠️ Eventos
+          </button>
+
+          <button class="tab-button"
+                  data-tab="missionPanel"
+                  type="button">
+            🚀 Misión
+          </button>
+
+          <button class="tab-button"
+                  data-tab="lifePanel"
+                  type="button">
+            🧑‍🚀 Vida
+          </button>
+
+        </div>
+
+
+        <section id="dataPanel"
+                 class="tab-panel active">
+
+          <div id="statsGrid"
+               class="stats-grid">
+          </div>
+
+
+          <div class="fact-box">
+
+            <span class="fact-icon">
+              ✦
+            </span>
+
+            <div>
+
+              <strong>
+                Dato curioso
+              </strong>
+
+              <p id="funFact"></p>
+
+            </div>
+
+          </div>
+
+
+          <div class="discovery-box">
+
+            <div>
+              <span>ÍNDICE DE EXPLORACIÓN</span>
+              <strong id="explorationPercent">
+                0%
+              </strong>
+            </div>
+
+            <div class="mini-progress">
+              <span id="explorationBar"></span>
+            </div>
+
+          </div>
+
+        </section>
+
+
+        <section id="eventsPanel"
+                 class="tab-panel">
+
+          <div class="event-generator">
+
+            <div>
+              <span>SIMULADOR DE EVENTOS</span>
+              <strong id="eventTitle">
+                Esperando señal...
+              </strong>
+            </div>
+
+            <button id="generateEventButton"
+                    type="button">
+              ⚡ GENERAR EVENTO
+            </button>
+
+          </div>
+
+          <div id="eventsList"
+               class="events-list">
+          </div>
+
+        </section>
+
+
+        <section id="missionPanel"
+                 class="tab-panel">
+
+          <div class="mission-card">
+
+            <div class="mission-score">
+
+              <span>
+                VIABILIDAD DE COLONIA
+              </span>
+
+              <strong id="missionScore">
+                0%
+              </strong>
+
+            </div>
+
+
+            <div class="progress-track">
+              <span id="missionProgress"></span>
+            </div>
+
+
+            <p id="missionSummary"></p>
+
+
+            <h3>
+              🧰 EQUIPO ESENCIAL
+            </h3>
+
+            <div id="equipmentList"
+                 class="equipment-list">
+            </div>
+
+          </div>
+
+        </section>
+
+
+        <section id="lifePanel"
+                 class="tab-panel">
+
+          <div class="life-preview">
+
+            <div class="life-icon">
+              🧑‍🚀
+            </div>
+
+            <div>
+
+              <span>
+                SIMULACIÓN HUMANA
+              </span>
+
+              <strong id="lifeTitle">
+                Condiciones de vida
+              </strong>
+
+              <p id="lifeText">
+              </p>
+
+            </div>
+
+          </div>
+
+          <button id="openLifeButton"
+                  class="wide-action"
+                  type="button">
+            🧬 INICIAR SIMULACIÓN DETALLADA
+          </button>
+
+        </section>
+
+      </div>
+
+    </article>
+
+  </section>
+
+
+  <!-- =========================================
+       LABORATORIO
+  ========================================== -->
+
+  <section class="calculator-section">
+
+    <div class="section-heading">
+
+      <p class="eyebrow">
+        LABORATORIO GRAVITACIONAL
+      </p>
+
+      <h2>
+        ¿Cómo cambiarías en otro mundo?
+      </h2>
+
+      <p>
+        Introduce tus datos y descubre cómo cambiarían tu peso
+        y tu edad según el planeta seleccionado.
+      </p>
+
+    </div>
+
+
+    <div class="calculator-card">
+
+      <div class="calculator-header">
+        <span>LAB-07</span>
+        <span id="calculatorPlanet">
+          MERCURIO
+        </span>
+      </div>
+
+
+      <label>
+
+        Tu peso en la Tierra
+
+        <div class="input-wrapper">
+
+          <input id="earthWeight"
+                 type="number"
+                 min="1"
+                 max="500"
+                 value="70">
+
+          <span>
+            kg
+          </span>
+
+        </div>
+
+      </label>
+
+
+      <label>
+
+        Tu edad en la Tierra
+
+        <div class="input-wrapper">
+
+          <input id="earthAge"
+                 type="number"
+                 min="1"
+                 max="130"
+                 value="20">
+
+          <span>
+            años
+          </span>
+
+        </div>
+
+      </label>
+
+
+      <button id="calculateButton"
+              class="primary-button"
+              type="button">
+        🧪 CALCULAR TRANSFORMACIÓN
+      </button>
+
+
+      <div class="calculation-results">
+
+        <div>
+
+          <span>
+            PESARÍAS
+          </span>
+
+          <strong id="weightResult">
+            26,6 kg
+          </strong>
+
+        </div>
+
+        <div>
+
+          <span>
+            TU EDAD SERÍA
+          </span>
+
+          <strong id="ageResult">
+            83,3 años
+          </strong>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================================
+       REGISTRO
+  ========================================== -->
+
+  <section class="mission-log-section">
+
+    <div class="section-heading">
+
+      <p class="eyebrow">
+        REGISTRO DE EXPLORACIÓN
+      </p>
+
+      <h2>
+        Tu misión espacial
+      </h2>
+
+    </div>
+
+
+    <div class="mission-log">
+
+      <div class="mission-log-icon">
+        🚀
+      </div>
+
+      <div>
+
+        <span>
+          PLANETA ACTUAL
+        </span>
+
+        <strong id="currentMissionPlanet">
+          Mercurio
+        </strong>
+
+      </div>
+
+      <div>
+
+        <span>
+          MUNDOS EXPLORADOS
+        </span>
+
+        <strong id="visitedCount">
+          1 / 8
+        </strong>
+
+      </div>
+
+      <div>
+
+        <span>
+          RANGO
+        </span>
+
+        <strong id="explorerRank">
+          Cadete espacial
+        </strong>
+
+      </div>
+
+    </div>
+
+
+    <div class="achievement-panel">
+
+      <div class="achievement-title">
+        🏆 LOGROS DE EXPLORADOR
+      </div>
+
+      <div id="achievementList"
+           class="achievement-list">
+      </div>
+
+    </div>
+
+  </section>
+
+</main>
+
+
+<footer>
+
+  <strong>
+    ✦ ATLAS CÓSMICO
+  </strong>
+
+  <p>
+    Una experiencia educativa e interactiva del Sistema Solar.
+  </p>
+
+  <span class="footer-code">
+    MISSION CODE: AC-001
+  </span>
+
+</footer>
+
+
+<!-- =========================================
+     CENTRO DE MANDO
+========================================= -->
+
+<div class="command-dock">
+
+  <button id="openPlanetsButton"
+          class="command-btn"
+          type="button">
+
+    <span>🪐</span>
+    <small>PLANETAS</small>
+
+  </button>
+
+
+  <button id="openLabButton"
+          class="command-btn"
+          type="button">
+
+    <span>🔬</span>
+    <small>LABORATORIO</small>
+
+  </button>
+
+
+  <button id="openMissionButton"
+          class="command-btn"
+          type="button">
+
+    <span>🚀</span>
+    <small>MISIÓN</small>
+
+  </button>
+
+
+  <button id="surpriseButton"
+          class="command-btn"
+          type="button">
+
+    <span>🎲</span>
+    <small>SORPRESA</small>
+
+  </button>
+
+</div>
+
+
+<!-- =========================================
+     MODAL
+========================================= -->
+
+<div id="infoModal"
+     class="modal-overlay">
+
+  <div class="modal-window">
+
+    <button id="closeModal"
+            class="modal-close"
+            type="button">
+      ✕
+    </button>
+
+    <div class="modal-header">
+
+      <p class="eyebrow">
+        ATLAS CÓSMICO // TERMINAL
+      </p>
+
+      <h2 id="modalTitle">
+        Centro de control
+      </h2>
+
+    </div>
+
+    <div id="modalContent"
+         class="modal-content">
+    </div>
+
+  </div>
+
+</div>
+
+
+<div id="toast"
+     class="toast">
+</div>

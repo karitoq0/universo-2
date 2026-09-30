@@ -1,0 +1,2049 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Orbitron:wght@500;600;700;800&display=swap");
+
+:root {
+  --background: #02040d;
+  --panel: rgba(9, 15, 34, .82);
+  --text: #f5f7ff;
+  --muted: #9da9c7;
+  --accent: #72e7ff;
+  --purple: #a078ff;
+  --pink: #ff78d1;
+  --green: #50e0a2;
+  --yellow: #ffd66b;
+  --red: #ff6877;
+  --border: rgba(145,180,255,.16);
+  --shadow: 0 30px 90px rgba(0,0,0,.5);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  color: var(--text);
+  background: var(--background);
+  font-family: Inter, sans-serif;
+  overflow-x: hidden;
+}
+
+button,
+input {
+  font-family: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+.space-background {
+  position: fixed;
+  inset: 0;
+  z-index: -10;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 50% 20%, #111d49, #040713 48%, #010208);
+}
+
+#stars {
+  position: absolute;
+  inset: 0;
+}
+
+.star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+  background: white;
+  animation: starBlink 3s infinite alternate;
+}
+
+.nebula {
+  position: absolute;
+  width: 550px;
+  height: 550px;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: .12;
+}
+
+.nebula-one {
+  left: -200px;
+  top: -200px;
+  background: #7655ff;
+}
+
+.nebula-two {
+  right: -200px;
+  bottom: -200px;
+  background: #00ddff;
+}
+
+.shooting-star {
+  position: absolute;
+  width: 140px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, white);
+  transform: rotate(-35deg);
+  opacity: 0;
+}
+
+.shooting-one {
+  top: 20%;
+  left: -10%;
+  animation: shooting 8s infinite;
+}
+
+.shooting-two {
+  top: 50%;
+  left: -10%;
+  animation: shooting 11s 4s infinite;
+}
+
+
+/* =========================================
+   NAVBAR
+========================================= */
+
+.hero {
+  min-height: 780px;
+  position: relative;
+}
+
+.navbar {
+  width: min(1250px,92%);
+  margin: auto;
+  padding: 25px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.brand {
+  color: white;
+  text-decoration: none;
+  font-family: Orbitron;
+  font-size: 19px;
+  letter-spacing: 1px;
+}
+
+.brand-icon {
+  color: var(--accent);
+  margin-right: 8px;
+  text-shadow: 0 0 20px var(--accent);
+}
+
+.brand b {
+  color: var(--accent);
+}
+
+.nav-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.icon-button {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  color: white;
+  background: rgba(255,255,255,.04);
+  border: 1px solid var(--border);
+  transition: .25s;
+}
+
+.icon-button:hover {
+  border-color: var(--accent);
+  box-shadow: 0 0 20px rgba(114,231,255,.12);
+  transform: translateY(-2px);
+}
+
+
+/* =========================================
+   HERO
+========================================= */
+
+.hero-content {
+  width: min(1000px,90%);
+  margin: 130px auto 0;
+  text-align: center;
+}
+
+.system-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border-radius: 50px;
+  border: 1px solid rgba(80,224,162,.2);
+  background: rgba(80,224,162,.05);
+  color: var(--green);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  margin-bottom: 25px;
+}
+
+.status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--green);
+  box-shadow: 0 0 15px var(--green);
+  animation: pulse 1.5s infinite;
+}
+
+.eyebrow {
+  color: var(--accent);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 3px;
+}
+
+.hero h1 {
+  margin: 15px 0;
+  font-family: Orbitron;
+  font-size: clamp(45px,8vw,92px);
+  line-height: 1.03;
+}
+
+.hero h1 span {
+  display: block;
+  color: var(--accent);
+  text-shadow:
+    0 0 25px rgba(114,231,255,.25),
+    0 0 60px rgba(160,120,255,.15);
+}
+
+.hero-description {
+  max-width: 700px;
+  margin: 25px auto;
+  color: var(--muted);
+  line-height: 1.8;
+  font-size: 16px;
+}
+
+.hero-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.primary-button,
+.secondary-button,
+.info-button {
+  border-radius: 13px;
+  padding: 14px 21px;
+  font-weight: 800;
+  border: none;
+  transition: .25s;
+}
+
+.primary-button {
+  color: #02050c;
+  background: linear-gradient(135deg,var(--accent),var(--purple));
+  box-shadow: 0 10px 35px rgba(114,231,255,.12);
+}
+
+.secondary-button,
+.info-button {
+  color: white;
+  background: rgba(255,255,255,.05);
+  border: 1px solid var(--border);
+}
+
+.primary-button:hover,
+.secondary-button:hover,
+.info-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 40px rgba(114,231,255,.15);
+}
+
+.hero-stats {
+  display: flex;
+  justify-content: center;
+  gap: 55px;
+  margin-top: 60px;
+}
+
+.hero-stats div {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.hero-stats strong {
+  font-family: Orbitron;
+  font-size: 25px;
+  color: white;
+}
+
+.hero-stats span {
+  color: var(--muted);
+  font-size: 9px;
+  letter-spacing: 2px;
+}
+
+.floating-map-button {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 12px 18px;
+  border-radius: 30px;
+  color: var(--accent);
+  background: rgba(114,231,255,.05);
+  border: 1px solid rgba(114,231,255,.2);
+  transition: .25s;
+}
+
+.floating-map-button:hover {
+  background: rgba(114,231,255,.12);
+  box-shadow: 0 0 30px rgba(114,231,255,.1);
+}
+
+
+/* =========================================
+   SECCIONES
+========================================= */
+
+.explorer-section,
+.calculator-section,
+.mission-log-section {
+  width: min(1250px,92%);
+  margin: auto;
+  padding: 110px 0;
+}
+
+.section-heading {
+  max-width: 780px;
+  margin: 0 auto 45px;
+  text-align: center;
+}
+
+.section-heading h2 {
+  font-family: Orbitron;
+  font-size: clamp(30px,5vw,55px);
+  margin: 8px 0 15px;
+}
+
+.section-heading p {
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+
+/* =========================================
+   SELECTOR
+========================================= */
+
+.planet-selector {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin-bottom: 30px;
+}
+
+.planet-select-button {
+  padding: 10px 15px;
+  border-radius: 12px;
+  color: white;
+  background: rgba(255,255,255,.035);
+  border: 1px solid var(--border);
+  transition: .25s;
+}
+
+.planet-select-button:hover,
+.planet-select-button.active {
+  color: var(--accent);
+  border-color: var(--accent);
+  background: rgba(114,231,255,.08);
+  box-shadow: 0 0 25px rgba(114,231,255,.08);
+}
+
+
+/* =========================================
+   CONSOLA
+========================================= */
+
+.planet-console {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  padding: 30px;
+  border: 1px solid var(--border);
+  border-radius: 30px;
+  background: var(--panel);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(18px);
+}
+
+.visual-column {
+  min-height: 560px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.planet-location {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  color: var(--muted);
+  font-size: 9px;
+  letter-spacing: 2px;
+}
+
+.planet-location strong {
+  color: var(--accent);
+}
+
+.planet-scene {
+  position: relative;
+  width: 470px;
+  height: 470px;
+  display: grid;
+  place-items: center;
+}
+
+.orbit-ring {
+  position: absolute;
+  border: 1px solid rgba(114,231,255,.12);
+  border-radius: 50%;
+}
+
+.orbit-ring-one {
+  width: 370px;
+  height: 230px;
+  transform: rotate(-20deg);
+}
+
+.orbit-ring-two {
+  width: 280px;
+  height: 410px;
+  transform: rotate(25deg);
+}
+
+.orbit-ring-three {
+  width: 420px;
+  height: 420px;
+  border-style: dashed;
+  animation: orbitRotate 18s linear infinite;
+}
+
+.planet-label {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  z-index: 5;
+}
+
+.planet-label span {
+  display: block;
+  color: var(--muted);
+  font-size: 8px;
+  letter-spacing: 2px;
+}
+
+.planet-label strong {
+  color: var(--accent);
+  font-family: Orbitron;
+  font-size: 12px;
+}
+
+.planet {
+  position: relative;
+  width: 230px;
+  height: 230px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%,#ddd,#777,#222);
+  box-shadow:
+    inset -30px -20px 50px rgba(0,0,0,.55),
+    0 0 80px rgba(255,255,255,.15);
+  animation: planetSpin 18s linear infinite;
+  transition: .5s;
+  cursor: grab;
+}
+
+.planet:active {
+  cursor: grabbing;
+}
+
+.planet-shine {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background:
+    linear-gradient(125deg,rgba(255,255,255,.38),transparent 38%);
+}
+
+.planet-atmosphere {
+  position: absolute;
+  inset: -8px;
+  border-radius: 50%;
+  border: 1px solid rgba(114,231,255,.15);
+  box-shadow: 0 0 25px rgba(114,231,255,.08);
+}
+
+.planet-ring {
+  position: absolute;
+  width: 330px;
+  height: 85px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%) rotate(-18deg);
+  border: 13px solid rgba(230,220,190,.6);
+  border-radius: 50%;
+  display: none;
+}
+
+.planet.has-ring .planet-ring {
+  display: block;
+}
+
+.planet-moon {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #bbb;
+  display: none;
+  box-shadow: 0 0 20px rgba(255,255,255,.15);
+}
+
+.planet.has-moon + .planet-moon {
+  display: block;
+  animation: moonOrbit 5s linear infinite;
+}
+
+.planet-controls {
+  display: flex;
+  gap: 8px;
+}
+
+.planet-controls button,
+.visual-actions button {
+  border: 1px solid var(--border);
+  border-radius: 11px;
+  padding: 10px 14px;
+  color: white;
+  background: rgba(255,255,255,.04);
+}
+
+.planet-controls button:hover,
+.visual-actions button:hover {
+  border-color: var(--accent);
+}
+
+.control-main {
+  min-width: 170px;
+}
+
+.drag-help {
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.visual-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+
+/* =========================================
+   INFORMACIÓN
+========================================= */
+
+.information-column {
+  padding: 15px;
+}
+
+.planet-title-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.planet-type {
+  color: var(--accent);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+.planet-title-row h2 {
+  margin: 5px 0 15px;
+  font-family: Orbitron;
+  font-size: 45px;
+}
+
+.status-badge {
+  height: fit-content;
+  padding: 8px 12px;
+  border-radius: 30px;
+  font-size: 10px;
+  font-weight: 800;
+  background: rgba(255,255,255,.06);
+}
+
+.status-badge.safe {
+  color: var(--green);
+}
+
+.status-badge.medium {
+  color: var(--yellow);
+}
+
+.status-badge.danger {
+  color: var(--red);
+}
+
+.planet-description {
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+.planet-meta {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  padding: 12px 0;
+  color: var(--muted);
+  font-size: 10px;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.planet-meta b {
+  color: var(--green);
+}
+
+.tabs {
+  display: flex;
+  gap: 3px;
+  margin-top: 20px;
+  border-bottom: 1px solid var(--border);
+  overflow-x: auto;
+}
+
+.tab-button {
+  flex-shrink: 0;
+  padding: 12px 13px;
+  border: none;
+  background: transparent;
+  color: var(--muted);
+}
+
+.tab-button.active {
+  color: var(--accent);
+  border-bottom: 2px solid var(--accent);
+}
+
+.tab-panel {
+  display: none;
+  padding-top: 20px;
+}
+
+.tab-panel.active {
+  display: block;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.stat {
+  padding: 15px;
+  border-radius: 14px;
+  background: rgba(255,255,255,.035);
+  border: 1px solid var(--border);
+}
+
+.stat span {
+  display: block;
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.stat strong {
+  display: block;
+  margin-top: 5px;
+}
+
+.fact-box {
+  display: flex;
+  gap: 14px;
+  margin-top: 12px;
+  padding: 17px;
+  border-radius: 15px;
+  background: rgba(114,231,255,.045);
+  border: 1px solid rgba(114,231,255,.13);
+}
+
+.fact-icon {
+  color: var(--accent);
+  font-size: 25px;
+}
+
+.fact-box p {
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.discovery-box {
+  margin-top: 12px;
+  padding: 15px;
+  border-radius: 14px;
+  background: rgba(160,120,255,.05);
+}
+
+.discovery-box > div:first-child {
+  display: flex;
+  justify-content: space-between;
+  color: var(--muted);
+  font-size: 9px;
+}
+
+.discovery-box strong {
+  color: var(--purple);
+}
+
+.mini-progress,
+.progress-track {
+  height: 7px;
+  margin-top: 10px;
+  overflow: hidden;
+  border-radius: 20px;
+  background: rgba(255,255,255,.07);
+}
+
+.mini-progress span,
+.progress-track span {
+  display: block;
+  height: 100%;
+  width: 0;
+  border-radius: inherit;
+  background: linear-gradient(90deg,var(--accent),var(--purple));
+  transition: .6s;
+}
+
+.event-generator {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  padding: 15px;
+  border-radius: 15px;
+  background: rgba(255,120,209,.04);
+  border: 1px solid rgba(255,120,209,.12);
+}
+
+.event-generator span {
+  display: block;
+  color: var(--pink);
+  font-size: 9px;
+  letter-spacing: 1px;
+}
+
+.event-generator strong {
+  display: block;
+  margin-top: 5px;
+}
+
+.event-generator button {
+  padding: 10px;
+  border-radius: 10px;
+  color: white;
+  background: rgba(255,255,255,.06);
+  border: 1px solid var(--border);
+}
+
+.event-item,
+.equipment-item {
+  margin-top: 10px;
+  padding: 13px;
+  border-radius: 12px;
+  color: #d9e1f5;
+  background: rgba(255,255,255,.035);
+  border: 1px solid var(--border);
+}
+
+.mission-card {
+  padding: 20px;
+  border-radius: 20px;
+  background: rgba(255,255,255,.035);
+}
+
+.mission-score {
+  display: flex;
+  justify-content: space-between;
+}
+
+.mission-score span {
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.mission-score strong {
+  color: var(--accent);
+  font-family: Orbitron;
+  font-size: 28px;
+}
+
+.mission-card p {
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.mission-card h3 {
+  font-family: Orbitron;
+  font-size: 13px;
+}
+
+.life-preview {
+  display: flex;
+  gap: 18px;
+  padding: 20px;
+  border-radius: 18px;
+  background: linear-gradient(
+    135deg,
+    rgba(114,231,255,.06),
+    rgba(160,120,255,.06)
+  );
+  border: 1px solid var(--border);
+}
+
+.life-icon {
+  font-size: 40px;
+}
+
+.life-preview span {
+  color: var(--accent);
+  font-size: 9px;
+  letter-spacing: 2px;
+}
+
+.life-preview strong {
+  display: block;
+  margin: 7px 0;
+  font-family: Orbitron;
+}
+
+.life-preview p {
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.wide-action {
+  width: 100%;
+  margin-top: 12px;
+  padding: 13px;
+  border-radius: 12px;
+  color: white;
+  background: rgba(114,231,255,.07);
+  border: 1px solid rgba(114,231,255,.2);
+}
+
+
+/* =========================================
+   CALCULADORA
+========================================= */
+
+.calculator-card {
+  max-width: 680px;
+  margin: auto;
+  padding: 30px;
+  border-radius: 25px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+}
+
+.calculator-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 25px;
+  color: var(--accent);
+  font-family: Orbitron;
+  font-size: 10px;
+}
+
+.calculator-card label {
+  display: block;
+  margin-bottom: 18px;
+  color: var(--muted);
+}
+
+.input-wrapper {
+  display: flex;
+  margin-top: 8px;
+}
+
+.input-wrapper input {
+  width: 100%;
+  padding: 14px;
+  color: white;
+  background: rgba(0,0,0,.25);
+  border: 1px solid var(--border);
+  border-radius: 10px 0 0 10px;
+  outline: none;
+}
+
+.input-wrapper input:focus {
+  border-color: var(--accent);
+}
+
+.input-wrapper span {
+  display: grid;
+  place-items: center;
+  padding: 0 15px;
+  background: rgba(255,255,255,.07);
+  border-radius: 0 10px 10px 0;
+}
+
+.calculation-results {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.calculation-results div {
+  padding: 20px;
+  border-radius: 15px;
+  background: rgba(255,255,255,.035);
+}
+
+.calculation-results span {
+  color: var(--muted);
+  font-size: 9px;
+}
+
+.calculation-results strong {
+  display: block;
+  margin-top: 7px;
+  color: var(--accent);
+  font-family: Orbitron;
+  font-size: 22px;
+}
+
+
+/* =========================================
+   MISIÓN
+========================================= */
+
+.mission-log {
+  display: grid;
+  grid-template-columns: 70px repeat(3,1fr);
+  gap: 15px;
+  align-items: center;
+  padding: 25px;
+  border-radius: 22px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+}
+
+.mission-log-icon {
+  font-size: 40px;
+}
+
+.mission-log span {
+  display: block;
+  color: var(--muted);
+  font-size: 9px;
+}
+
+.mission-log strong {
+  display: block;
+  margin-top: 5px;
+}
+
+.achievement-panel {
+  margin-top: 15px;
+  padding: 20px;
+  border-radius: 20px;
+  background: rgba(255,255,255,.025);
+  border: 1px solid var(--border);
+}
+
+.achievement-title {
+  color: var(--yellow);
+  font-family: Orbitron;
+  font-size: 12px;
+  margin-bottom: 15px;
+}
+
+.achievement-list {
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  gap: 10px;
+}
+
+.achievement {
+  padding: 13px;
+  border-radius: 12px;
+  background: rgba(255,255,255,.035);
+  border: 1px solid var(--border);
+  opacity: .35;
+}
+
+.achievement.unlocked {
+  opacity: 1;
+  border-color: rgba(255,214,107,.35);
+  box-shadow: 0 0 20px rgba(255,214,107,.06);
+}
+
+.achievement-icon {
+  font-size: 23px;
+}
+
+.achievement strong {
+  display: block;
+  margin-top: 6px;
+  font-size: 11px;
+}
+
+.achievement small {
+  color: var(--muted);
+}
+
+
+/* =========================================
+   FOOTER
+========================================= */
+
+footer {
+  padding: 70px 20px;
+  text-align: center;
+  border-top: 1px solid var(--border);
+}
+
+footer strong {
+  font-family: Orbitron;
+}
+
+footer p {
+  color: var(--muted);
+}
+
+.footer-code {
+  color: var(--accent);
+  font-size: 9px;
+  letter-spacing: 3px;
+}
+
+
+/* =========================================
+   CENTRO DE MANDO
+========================================= */
+
+.command-dock {
+  position: fixed;
+  z-index: 2000;
+  right: 20px;
+  bottom: 20px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  padding: 10px;
+
+  border-radius: 20px;
+  background: rgba(4,8,22,.88);
+  border: 1px solid rgba(114,231,255,.2);
+
+  backdrop-filter: blur(18px);
+  box-shadow: 0 20px 50px rgba(0,0,0,.45);
+}
+
+.command-btn {
+  width: 85px;
+  min-height: 62px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+
+  border-radius: 14px;
+  color: white;
+  background: rgba(255,255,255,.045);
+  border: 1px solid var(--border);
+
+  transition: .25s;
+}
+
+.command-btn span {
+  font-size: 21px;
+}
+
+.command-btn small {
+  color: var(--muted);
+  font-size: 8px;
+  font-weight: 800;
+}
+
+.command-btn:hover {
+  transform: translateX(-5px) scale(1.03);
+  border-color: var(--accent);
+  background: rgba(114,231,255,.1);
+  box-shadow: 0 0 25px rgba(114,231,255,.1);
+}
+
+
+/* =========================================
+   MODALES
+========================================= */
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 4000;
+
+  display: none;
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px;
+
+  background: rgba(0,0,0,.78);
+  backdrop-filter: blur(14px);
+}
+
+.modal-overlay.active {
+  display: flex;
+  animation: modalIn .25s ease;
+}
+
+.modal-window {
+  position: relative;
+  width: min(900px,95vw);
+  max-height: 88vh;
+  overflow-y: auto;
+
+  padding: 35px;
+
+  border-radius: 28px;
+  border: 1px solid rgba(114,231,255,.22);
+
+  background:
+    radial-gradient(
+      circle at top right,
+      rgba(160,120,255,.13),
+      transparent 35%
+    ),
+    #080d1e;
+
+  box-shadow:
+    0 40px 120px rgba(0,0,0,.75),
+    0 0 50px rgba(114,231,255,.05);
+}
+
+.modal-close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+
+  width: 40px;
+  height: 40px;
+
+  border-radius: 50%;
+  color: white;
+  background: rgba(255,255,255,.05);
+  border: 1px solid var(--border);
+
+  transition: .2s;
+}
+
+.modal-close:hover {
+  background: var(--red);
+  transform: rotate(90deg);
+}
+
+.modal-header h2 {
+  font-family: Orbitron;
+  font-size: clamp(25px,5vw,40px);
+  margin: 5px 0 25px;
+}
+
+.modal-content {
+  color: #dfe6f7;
+}
+
+.modal-planets-grid {
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  gap: 12px;
+}
+
+.modal-planet-button {
+  min-height: 110px;
+  padding: 15px;
+  text-align: left;
+
+  color: white;
+  background: rgba(255,255,255,.04);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+
+  transition: .25s;
+}
+
+.modal-planet-button:hover {
+  transform: translateY(-5px);
+  border-color: var(--accent);
+  background: rgba(114,231,255,.08);
+}
+
+.modal-planet-button strong {
+  display: block;
+  font-family: Orbitron;
+  margin-bottom: 7px;
+}
+
+.modal-planet-button span {
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.quick-planet {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+.quick-box {
+  padding: 20px;
+  border-radius: 18px;
+  background: rgba(255,255,255,.035);
+  border: 1px solid var(--border);
+}
+
+.quick-box h3 {
+  margin-top: 0;
+  color: var(--accent);
+  font-family: Orbitron;
+  font-size: 15px;
+}
+
+.quick-box p {
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.quick-stat {
+  display: flex;
+  justify-content: space-between;
+  padding: 9px 0;
+  border-bottom: 1px solid rgba(255,255,255,.06);
+}
+
+.quick-stat span {
+  color: var(--muted);
+}
+
+.quick-stat strong {
+  color: white;
+}
+
+.modal-lab {
+  display: grid;
+  gap: 15px;
+}
+
+.modal-input label {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.modal-input input {
+  width: 100%;
+  margin-top: 7px;
+  padding: 13px;
+  color: white;
+  background: rgba(0,0,0,.3);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+
+.modal-result {
+  padding: 20px;
+  border-radius: 18px;
+  background: rgba(114,231,255,.05);
+  border: 1px solid rgba(114,231,255,.13);
+  line-height: 1.8;
+}
+
+.modal-result strong {
+  color: var(--accent);
+  font-family: Orbitron;
+  font-size: 25px;
+}
+
+.mission-modal {
+  padding: 25px;
+  border-radius: 20px;
+  background: rgba(114,231,255,.04);
+  border: 1px solid var(--border);
+}
+
+.mission-number {
+  font-family: Orbitron;
+  color: var(--accent);
+  font-size: 50px;
+}
+
+.modal-mission-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.modal-mission-item {
+  padding: 15px;
+  border-radius: 13px;
+  background: rgba(255,255,255,.04);
+}
+
+.surprise-card {
+  text-align: center;
+  padding: 20px;
+}
+
+.surprise-icon {
+  font-size: 65px;
+}
+
+.surprise-card h3 {
+  font-family: Orbitron;
+  font-size: 30px;
+}
+
+.surprise-card p {
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+.simulation-grid {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 12px;
+}
+
+.simulation-card {
+  padding: 18px;
+  border-radius: 16px;
+  background: rgba(255,255,255,.04);
+  border: 1px solid var(--border);
+}
+
+.simulation-card span {
+  color: var(--accent);
+  font-size: 10px;
+}
+
+.simulation-card strong {
+  display: block;
+  margin: 8px 0;
+  font-family: Orbitron;
+}
+
+.simulation-card p {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.map-screen {
+  position: relative;
+  min-height: 500px;
+  border-radius: 20px;
+  overflow: hidden;
+  background:
+    radial-gradient(circle,#12245a,#040916 65%);
+  border: 1px solid rgba(114,231,255,.15);
+}
+
+.map-sun {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: radial-gradient(circle,#fff5a5,#ff9d2e,#ff4d00);
+  box-shadow: 0 0 50px #ff9d2e;
+}
+
+.map-orbit {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  border: 1px solid rgba(114,231,255,.13);
+  border-radius: 50%;
+}
+
+.map-planet {
+  position: absolute;
+  border: none;
+  border-radius: 50%;
+  color: white;
+  background: #555;
+  box-shadow: 0 0 15px rgba(255,255,255,.2);
+  transition: .25s;
+}
+
+.map-planet:hover {
+  transform: scale(1.5);
+  box-shadow: 0 0 30px var(--accent);
+}
+
+.map-label {
+  position: absolute;
+  transform: translate(-50%,25px);
+  color: var(--muted);
+  font-size: 9px;
+  pointer-events: none;
+}
+
+.toast {
+  position: fixed;
+  z-index: 6000;
+  left: 50%;
+  bottom: 25px;
+  transform: translate(-50%,120px);
+
+  padding: 13px 20px;
+  border-radius: 30px;
+
+  background: #101936;
+  border: 1px solid rgba(114,231,255,.2);
+
+  color: white;
+  font-size: 12px;
+
+  transition: .3s;
+}
+
+.toast.show {
+  transform: translate(-50%,0);
+}
+
+body.paused *,
+body.paused *::before,
+body.paused *::after {
+  animation-play-state: paused !important;
+}
+
+
+/* =========================================
+   ANIMACIONES
+========================================= */
+
+@keyframes starBlink {
+  from {
+    opacity: .15;
+  }
+
+  to {
+    opacity: .9;
+  }
+}
+
+@keyframes planetSpin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes orbitRotate {
+  from {
+    transform: rotate(25deg);
+  }
+
+  to {
+    transform: rotate(385deg);
+  }
+}
+
+@keyframes moonOrbit {
+  from {
+    transform: rotate(0deg) translateX(160px) rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg) translateX(160px) rotate(-360deg);
+  }
+}
+
+@keyframes pulse {
+  50% {
+    opacity: .3;
+  }
+}
+
+@keyframes shooting {
+  0% {
+    left: -15%;
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 1;
+  }
+
+  35% {
+    left: 110%;
+    opacity: 0;
+  }
+
+  100% {
+    left: 110%;
+    opacity: 0;
+  }
+}
+
+@keyframes modalIn {
+  from {
+    opacity: 0;
+    transform: scale(.94) translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media(max-width:900px) {
+
+  .planet-console {
+    grid-template-columns: 1fr;
+  }
+
+  .planet-scene {
+    width: 390px;
+    height: 390px;
+  }
+
+  .modal-planets-grid {
+    grid-template-columns: repeat(2,1fr);
+  }
+
+  .achievement-list {
+    grid-template-columns: 1fr 1fr;
+  }
+
+}
+
+@media(max-width:650px) {
+
+  .hero-content {
+    margin-top: 80px;
+  }
+
+  .hero-stats {
+    gap: 25px;
+  }
+
+  .hero-stats strong {
+    font-size: 19px;
+  }
+
+  .planet-scene {
+    width: 320px;
+    height: 320px;
+  }
+
+  .planet {
+    width: 170px;
+    height: 170px;
+  }
+
+  .planet-ring {
+    width: 250px;
+  }
+
+  .planet-console {
+    padding: 18px;
+  }
+
+  .mission-log {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .achievement-list {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .quick-planet,
+  .simulation-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .command-dock {
+    left: 50%;
+    right: auto;
+    bottom: 10px;
+    transform: translateX(-50%);
+    flex-direction: row;
+  }
+
+  .command-btn {
+    width: 65px;
+    min-height: 57px;
+  }
+
+  .command-btn span {
+    font-size: 17px;
+  }
+
+  .command-btn small {
+    font-size: 7px;
+  }
+
+  .modal-window {
+    padding: 25px 17px;
+  }
+
+  .modal-mission-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .calculation-results {
+    grid-template-columns: 1fr;
+  }
+/* =========================================================
+   MAPA HOLOGRÁFICO + SIMULACIÓN HUMANA
+   ========================================================= */
+
+.holo-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background:
+    radial-gradient(circle at 50% 45%, rgba(65, 220, 255, .10), transparent 35%),
+    rgba(2, 5, 18, .88);
+  backdrop-filter: blur(12px);
+}
+
+.holo-overlay.active {
+  display: flex;
+  animation: holoAppear .3s ease;
+}
+
+@keyframes holoAppear {
+  from {
+    opacity: 0;
+    transform: scale(.97);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.holo-window {
+  position: relative;
+  width: min(1150px, 96vw);
+  max-height: 90vh;
+  overflow: hidden;
+  border: 1px solid rgba(121, 231, 255, .35);
+  border-radius: 28px;
+  background:
+    linear-gradient(145deg, rgba(8, 18, 42, .97), rgba(7, 9, 25, .96));
+  box-shadow:
+    0 0 40px rgba(121, 231, 255, .12),
+    0 30px 100px rgba(0,0,0,.7),
+    inset 0 0 50px rgba(121, 231, 255, .035);
+}
+
+.holo-window::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(rgba(121,231,255,.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(121,231,255,.035) 1px, transparent 1px);
+  background-size: 35px 35px;
+}
+
+.holo-header {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 22px 26px;
+  border-bottom: 1px solid rgba(121,231,255,.15);
+}
+
+.holo-title {
+  margin: 0;
+  color: #79e7ff;
+  font-family: Orbitron, sans-serif;
+  font-size: clamp(18px, 3vw, 28px);
+  letter-spacing: 2px;
+  text-shadow: 0 0 18px rgba(121,231,255,.7);
+}
+
+.holo-status {
+  margin: 5px 0 0;
+  color: #8290ad;
+  font-size: 12px;
+  letter-spacing: 1px;
+}
+
+.holo-close {
+  width: 42px;
+  height: 42px;
+  border: 1px solid rgba(255,255,255,.15);
+  border-radius: 50%;
+  color: white;
+  background: rgba(255,255,255,.06);
+  font-size: 20px;
+  cursor: pointer;
+  transition: .2s;
+}
+
+.holo-close:hover {
+  background: rgba(255,107,117,.2);
+  border-color: #ff6b75;
+  transform: rotate(90deg);
+}
+
+/* MAPA */
+
+.holo-map {
+  position: relative;
+  z-index: 1;
+  height: 600px;
+  overflow: hidden;
+  cursor: grab;
+  background:
+    radial-gradient(circle at center, rgba(80,100,255,.08), transparent 40%),
+    #020510;
+}
+
+.holo-map:active {
+  cursor: grabbing;
+}
+
+.holo-grid {
+  position: absolute;
+  inset: -50%;
+  background:
+    linear-gradient(rgba(121,231,255,.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(121,231,255,.055) 1px, transparent 1px);
+  background-size: 45px 45px;
+  transform: perspective(700px) rotateX(58deg);
+  opacity: .7;
+}
+
+.holo-scanline {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent 0px,
+    transparent 5px,
+    rgba(121,231,255,.025) 6px
+  );
+}
+
+.holo-map-world {
+  position: absolute;
+  width: 900px;
+  height: 520px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.holo-sun {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 85px;
+  height: 85px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #fff7ad, #ffae32 40%, #ff5a1f 75%);
+  box-shadow:
+    0 0 25px #ffb52e,
+    0 0 70px rgba(255,140,30,.65),
+    0 0 140px rgba(255,100,20,.3);
+}
+
+.holo-orbit {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  border: 1px solid rgba(121,231,255,.15);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.holo-planet {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 62px;
+  height: 62px;
+  border: 2px solid rgba(121,231,255,.35);
+  border-radius: 50%;
+  color: white;
+  font-size: 22px;
+  cursor: pointer;
+  transition: .25s;
+  box-shadow: 0 0 18px rgba(121,231,255,.18);
+}
+
+.holo-planet:hover {
+  z-index: 20;
+  transform: scale(1.3);
+  border-color: #79e7ff;
+  box-shadow:
+    0 0 20px #79e7ff,
+    0 0 50px rgba(121,231,255,.4);
+}
+
+.holo-planet span {
+  position: absolute;
+  top: 70px;
+  white-space: nowrap;
+  color: #cbd6ef;
+  font-size: 11px;
+  font-family: Inter, sans-serif;
+  text-shadow: 0 0 8px #000;
+}
+
+.holo-controls {
+  position: absolute;
+  z-index: 10;
+  left: 20px;
+  bottom: 20px;
+  display: flex;
+  gap: 8px;
+}
+
+.holo-control {
+  width: 42px;
+  height: 42px;
+  border: 1px solid rgba(121,231,255,.25);
+  border-radius: 12px;
+  color: #79e7ff;
+  background: rgba(4,12,30,.85);
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.holo-control:hover {
+  background: rgba(121,231,255,.12);
+}
+
+.holo-info {
+  position: absolute;
+  z-index: 10;
+  right: 20px;
+  bottom: 20px;
+  width: 250px;
+  padding: 16px;
+  border: 1px solid rgba(121,231,255,.2);
+  border-radius: 16px;
+  background: rgba(4,10,25,.88);
+  backdrop-filter: blur(10px);
+}
+
+.holo-info strong {
+  color: #79e7ff;
+  font-family: Orbitron, sans-serif;
+}
+
+.holo-info p {
+  margin: 7px 0 0;
+  color: #9da9c5;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+/* SIMULACIÓN */
+
+.simulation-window {
+  overflow-y: auto;
+}
+
+.simulation-body {
+  position: relative;
+  z-index: 2;
+  padding: 28px;
+}
+
+.simulation-hero {
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  gap: 28px;
+  align-items: center;
+}
+
+.sim-planet {
+  width: 210px;
+  height: 210px;
+  margin: auto;
+  border-radius: 50%;
+  box-shadow:
+    0 0 30px rgba(121,231,255,.2),
+    0 0 80px rgba(121,231,255,.08);
+  animation: simFloat 5s ease-in-out infinite;
+}
+
+@keyframes simFloat {
+  0%,100% { transform: translateY(0) rotate(0); }
+  50% { transform: translateY(-12px) rotate(8deg); }
+}
+
+.simulation-body h2 {
+  margin: 0 0 8px;
+  color: white;
+  font-family: Orbitron, sans-serif;
+}
+
+.simulation-body .sim-intro {
+  color: #9da9c5;
+  line-height: 1.7;
+}
+
+.sim-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-top: 25px;
+}
+
+.sim-card {
+  padding: 18px;
+  border: 1px solid rgba(121,231,255,.13);
+  border-radius: 16px;
+  background: rgba(255,255,255,.035);
+}
+
+.sim-card .sim-icon {
+  font-size: 24px;
+}
+
+.sim-card span {
+  display: block;
+  margin-top: 8px;
+  color: #8490ad;
+  font-size: 11px;
+  text-transform: uppercase;
+}
+
+.sim-card strong {
+  display: block;
+  margin-top: 5px;
+  color: #79e7ff;
+  font-size: 18px;
+}
+
+.sim-scenario {
+  margin-top: 18px;
+  padding: 20px;
+  border: 1px solid rgba(156,108,255,.25);
+  border-radius: 18px;
+  background: linear-gradient(
+    135deg,
+    rgba(156,108,255,.09),
+    rgba(121,231,255,.04)
+  );
+}
+
+.sim-scenario h3 {
+  margin: 0 0 10px;
+  color: #c8b9ff;
+}
+
+.sim-scenario p {
+  color: #aeb9d2;
+  line-height: 1.7;
+  margin: 0;
+}
+
+.sim-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.sim-button {
+  border: 1px solid rgba(121,231,255,.3);
+  border-radius: 12px;
+  padding: 11px 16px;
+  color: #79e7ff;
+  background: rgba(121,231,255,.06);
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.sim-button:hover {
+  background: rgba(121,231,255,.14);
+}
+
+@media (max-width: 700px) {
+  .holo-map {
+    height: 500px;
+  }
+
+  .holo-map-world {
+    transform: translate(-50%, -50%) scale(.7);
+  }
+
+  .holo-info {
+    width: 180px;
+  }
+
+  .simulation-hero {
+    grid-template-columns: 1fr;
+  }
+
+  .sim-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+}

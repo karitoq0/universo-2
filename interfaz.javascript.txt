@@ -1,0 +1,2687 @@
+/* =========================================================
+   ATLAS CÓSMICO
+   SISTEMA INTERACTIVO COMPLETO
+========================================================= */
+
+
+/* =========================================================
+   BASE DE DATOS
+========================================================= */
+
+const planets = [
+
+  {
+    id:"mercury",
+    name:"Mercurio",
+    type:"PLANETA ROCOSO",
+    description:"Mercurio es el planeta más cercano al Sol y uno de los mundos más extremos del Sistema Solar.",
+    gradient:"radial-gradient(circle at 30% 30%,#ddd,#777 48%,#222)",
+    glow:"rgba(190,190,190,.4)",
+    gravity:.38,
+    orbitalPeriod:.24,
+    ring:false,
+    moon:false,
+    badge:"Extremo",
+    habitability:"danger",
+    score:5,
+    temperature:"167 °C",
+    year:"88 días",
+    stats:[
+      ["Gravedad","0.38 g"],
+      ["Año","88 días"],
+      ["Temperatura","167 °C"],
+      ["Lunas","0"]
+    ],
+    fact:"Un día solar en Mercurio dura aproximadamente 176 días terrestres.",
+    summary:"Una colonia necesitaría una protección extrema contra la radiación y los cambios de temperatura.",
+    equipment:["Trajes térmicos","Escudos contra radiación","Hábitats presurizados"],
+    events:["Cambios extremos de temperatura","Exposición a radiación solar","Necesidad de refugio permanente"],
+    life:"La vida humana requeriría hábitats completamente protegidos. Las temperaturas y la radiación serían grandes desafíos."
+  },
+
+  {
+    id:"venus",
+    name:"Venus",
+    type:"PLANETA ROCOSO",
+    description:"Venus posee una atmósfera extremadamente densa y temperaturas superficiales muy elevadas.",
+    gradient:"radial-gradient(circle at 30% 30%,#fff1b8,#d18b32 55%,#633b12)",
+    glow:"rgba(255,190,80,.4)",
+    gravity:.90,
+    orbitalPeriod:.62,
+    ring:false,
+    moon:false,
+    badge:"Inviable",
+    habitability:"danger",
+    score:2,
+    temperature:"464 °C",
+    year:"225 días",
+    stats:[
+      ["Gravedad","0.90 g"],
+      ["Año","225 días"],
+      ["Temperatura","464 °C"],
+      ["Lunas","0"]
+    ],
+    fact:"Venus gira en dirección contraria a la mayoría de los planetas.",
+    summary:"La superficie sería extremadamente hostil para una colonia humana.",
+    equipment:["Hábitats blindados","Sistemas de refrigeración","Protección atmosférica"],
+    events:["Temperaturas extremas","Presión atmosférica enorme","Atmósfera corrosiva"],
+    life:"Una colonia tendría que utilizar tecnología muy avanzada para proteger a las personas de la temperatura y la presión."
+  },
+
+  {
+    id:"earth",
+    name:"Tierra",
+    type:"PLANETA ROCOSO",
+    description:"La Tierra es nuestro hogar y el único mundo conocido que posee vida.",
+    gradient:"radial-gradient(circle at 30% 30%,#69d7ff,#2166d1 48%,#12315f)",
+    glow:"rgba(70,190,255,.45)",
+    gravity:1,
+    orbitalPeriod:1,
+    ring:false,
+    moon:true,
+    badge:"Habitable",
+    habitability:"safe",
+    score:100,
+    temperature:"15 °C",
+    year:"365 días",
+    stats:[
+      ["Gravedad","1.00 g"],
+      ["Año","365 días"],
+      ["Temperatura","15 °C"],
+      ["Lunas","1"]
+    ],
+    fact:"Más del 70% de la superficie terrestre está cubierta por agua.",
+    summary:"La Tierra proporciona las condiciones conocidas más favorables para la vida humana.",
+    equipment:["Recursos naturales","Infraestructura","Atmósfera respirable"],
+    events:["Clima cambiante","Tormentas","Ciclos naturales"],
+    life:"La Tierra ofrece actualmente las condiciones más adecuadas conocidas para la vida humana."
+  },
+
+  {
+    id:"mars",
+    name:"Marte",
+    type:"PLANETA ROCOSO",
+    description:"Marte es un mundo frío y árido que constituye uno de los principales objetivos de exploración.",
+    gradient:"radial-gradient(circle at 30% 30%,#ffb07c,#b8492b 50%,#4c1712)",
+    glow:"rgba(255,100,60,.4)",
+    gravity:.38,
+    orbitalPeriod:1.88,
+    ring:false,
+    moon:true,
+    badge:"Desafiante",
+    habitability:"medium",
+    score:45,
+    temperature:"-63 °C",
+    year:"687 días",
+    stats:[
+      ["Gravedad","0.38 g"],
+      ["Año","687 días"],
+      ["Temperatura","-63 °C"],
+      ["Lunas","2"]
+    ],
+    fact:"Marte posee Olympus Mons, uno de los volcanes más grandes conocidos del Sistema Solar.",
+    summary:"Una colonia podría requerir hábitats presurizados, producción de agua y sistemas de protección.",
+    equipment:["Trajes presurizados","Generadores de oxígeno","Refugios subterráneos"],
+    events:["Tormentas de polvo","Bajas temperaturas","Radiación superficial"],
+    life:"Una colonia humana podría necesitar refugios presurizados, producción de oxígeno y sistemas para obtener recursos."
+  },
+
+  {
+    id:"jupiter",
+    name:"Júpiter",
+    type:"GIGANTE GASEOSO",
+    description:"Júpiter es el planeta más grande del Sistema Solar y posee una atmósfera dominada por hidrógeno y helio.",
+    gradient:"linear-gradient(160deg,#eee0c4,#a87950,#e2b58b,#7e533d)",
+    glow:"rgba(220,160,100,.4)",
+    gravity:2.53,
+    orbitalPeriod:11.86,
+    ring:true,
+    moon:true,
+    badge:"Extremo",
+    habitability:"danger",
+    score:3,
+    temperature:"-110 °C",
+    year:"11.86 años",
+    stats:[
+      ["Gravedad","2.53 g"],
+      ["Año","11.86 años"],
+      ["Temperatura","-110 °C"],
+      ["Lunas","95+"]
+    ],
+    fact:"La Gran Mancha Roja es una gigantesca tormenta que ha durado siglos.",
+    summary:"La ausencia de una superficie sólida y las condiciones atmosféricas dificultan una colonia convencional.",
+    equipment:["Vehículos flotantes","Protección atmosférica","Sistemas de estabilización"],
+    events:["Tormentas gigantes","Presiones extremas","Radiación intensa"],
+    life:"Una colonia en Júpiter no tendría una superficie sólida convencional y tendría que imaginarse como una plataforma flotante."
+  },
+
+  {
+    id:"saturn",
+    name:"Saturno",
+    type:"GIGANTE GASEOSO",
+    description:"Saturno es famoso por su espectacular sistema de anillos formado principalmente por hielo y roca.",
+    gradient:"linear-gradient(160deg,#f4dca7,#a87950,#e2b58b,#7e533d)",
+    glow:"rgba(220,190,120,.4)",
+    gravity:1.07,
+    orbitalPeriod:29.45,
+    ring:true,
+    moon:true,
+    badge:"Extremo",
+    habitability:"danger",
+    score:4,
+    temperature:"-140 °C",
+    year:"29.45 años",
+    stats:[
+      ["Gravedad","1.07 g"],
+      ["Año","29.45 años"],
+      ["Temperatura","-140 °C"],
+      ["Lunas","140+"]
+    ],
+    fact:"Los anillos de Saturno están formados principalmente por partículas de hielo y roca.",
+    summary:"Una colonia tendría que utilizar tecnología especializada para permanecer en las capas atmosféricas.",
+    equipment:["Plataformas flotantes","Sistemas de navegación","Protección térmica"],
+    events:["Tormentas atmosféricas","Temperaturas extremas","Presión elevada"],
+    life:"Una hipotética colonia necesitaría estructuras muy avanzadas y sistemas capaces de mantenerse estables en la atmósfera."
+  },
+
+  {
+    id:"uranus",
+    name:"Urano",
+    type:"GIGANTE HELADO",
+    description:"Urano es un gigante helado con una inclinación axial extraordinaria.",
+    gradient:"radial-gradient(circle at 30% 30%,#d9ffff,#6bcbd0 55%,#286b80)",
+    glow:"rgba(100,240,255,.4)",
+    gravity:.89,
+    orbitalPeriod:84,
+    ring:true,
+    moon:true,
+    badge:"Extremo",
+    habitability:"danger",
+    score:5,
+    temperature:"-195 °C",
+    year:"84 años",
+    stats:[
+      ["Gravedad","0.89 g"],
+      ["Año","84 años"],
+      ["Temperatura","-195 °C"],
+      ["Lunas","27"]
+    ],
+    fact:"Urano gira prácticamente de lado debido a su enorme inclinación axial.",
+    summary:"El frío extremo y la atmósfera hacen que una colonia humana sea muy compleja.",
+    equipment:["Hábitats térmicos","Sistemas energéticos","Protección atmosférica"],
+    events:["Frío extremo","Vientos intensos","Oscuridad prolongada"],
+    life:"Las temperaturas extremas harían imprescindible una infraestructura térmica muy avanzada."
+  },
+
+  {
+    id:"neptune",
+    name:"Neptuno",
+    type:"GIGANTE HELADO",
+    description:"Neptuno es un planeta azul extremadamente frío y con algunos de los vientos más rápidos del Sistema Solar.",
+    gradient:"radial-gradient(circle at 30% 30%,#72b9ff,#3154d8 55%,#101d69)",
+    glow:"rgba(70,120,255,.45)",
+    gravity:1.14,
+    orbitalPeriod:164.8,
+    ring:true,
+    moon:true,
+    badge:"Extremo",
+    habitability:"danger",
+    score:3,
+    temperature:"-200 °C",
+    year:"164.8 años",
+    stats:[
+      ["Gravedad","1.14 g"],
+      ["Año","164.8 años"],
+      ["Temperatura","-200 °C"],
+      ["Lunas","14"]
+    ],
+    fact:"Neptuno posee algunos de los vientos más rápidos registrados en el Sistema Solar.",
+    summary:"Una misión humana necesitaría una infraestructura tecnológica extremadamente avanzada.",
+    equipment:["Hábitats presurizados","Protección térmica","Sistemas de navegación"],
+    events:["Vientos extremos","Frío intenso","Tormentas atmosféricas"],
+    life:"Una misión humana tendría que superar temperaturas extremas, fuertes vientos y una enorme distancia desde la Tierra."
+  }
+
+];
+
+
+/* =========================================================
+   ELEMENTOS
+========================================================= */
+
+const $ = id => document.getElementById(id);
+
+const planetSelector = $("planetSelector");
+const planet = $("planet");
+const planetRing = $("planetRing");
+const planetMoon = $("planetMoon");
+
+const modal = $("infoModal");
+const modalTitle = $("modalTitle");
+const modalContent = $("modalContent");
+
+let currentPlanetIndex = 0;
+let visitedPlanets = new Set([0]);
+
+let rotationDegrees = 0;
+let rotationPaused = false;
+let globalPaused = false;
+
+let dragging = false;
+let dragStartX = 0;
+let dragStartRotation = 0;
+
+let soundEnabled = false;
+let audioContext = null;
+let toastTimer;
+
+
+/* =========================================================
+   ESTRELLAS
+========================================================= */
+
+function createSpace(){
+
+  const stars = $("stars");
+
+  stars.innerHTML = "";
+
+  for(let i=0;i<220;i++){
+
+    const star = document.createElement("span");
+
+    star.className = "star";
+
+    star.style.left = Math.random()*100 + "%";
+    star.style.top = Math.random()*100 + "%";
+
+    const size = Math.random()*2+1;
+
+    star.style.width = size+"px";
+    star.style.height = size+"px";
+
+    star.style.animationDelay =
+      Math.random()*3+"s";
+
+    stars.appendChild(star);
+  }
+}
+
+
+/* =========================================================
+   SELECTOR
+========================================================= */
+
+function createSelector(){
+
+  planetSelector.innerHTML = "";
+
+  planets.forEach((p,index)=>{
+
+    const button =
+      document.createElement("button");
+
+    button.className =
+      "planet-select-button";
+
+    button.type = "button";
+
+    button.textContent =
+      p.name;
+
+    button.dataset.index =
+      index;
+
+    button.addEventListener(
+      "click",
+      ()=>{
+        selectPlanet(index);
+      }
+    );
+
+    planetSelector.appendChild(button);
+
+  });
+
+}
+
+
+/* =========================================================
+   SELECCIONAR PLANETA
+========================================================= */
+
+function selectPlanet(index,notify=true){
+
+  const p = planets[index];
+
+  if(!p) return;
+
+  currentPlanetIndex = index;
+
+  visitedPlanets.add(index);
+
+  $("planetName").textContent =
+    p.name;
+
+  $("planetLabel").textContent =
+    p.name.toUpperCase();
+
+  $("planetType").textContent =
+    p.type;
+
+  $("planetDescription").textContent =
+    p.description;
+
+  $("habitabilityBadge").textContent =
+    p.badge;
+
+  $("habitabilityBadge").className =
+    "status-badge "+p.habitability;
+
+  $("calculatorPlanet").textContent =
+    p.name.toUpperCase();
+
+
+  /* PLANETA VISUAL */
+
+  planet.style.background =
+    p.gradient;
+
+  planet.style.boxShadow =
+    `inset -30px -20px 50px rgba(0,0,0,.55),
+     0 0 80px ${p.glow}`;
+
+  planet.className =
+    "planet";
+
+  if(p.ring)
+    planet.classList.add("has-ring");
+
+  if(p.moon)
+    planet.classList.add("has-moon");
+
+
+  /* STATS */
+
+  $("statsGrid").innerHTML =
+    p.stats.map(s=>`
+
+      <div class="stat">
+
+        <span>${s[0]}</span>
+
+        <strong>${s[1]}</strong>
+
+      </div>
+
+    `).join("");
+
+
+  $("funFact").textContent =
+    p.fact;
+
+
+  $("eventsList").innerHTML =
+    p.events.map(event=>`
+
+      <div class="event-item">
+        ⚠️ ${event}
+      </div>
+
+    `).join("");
+
+
+  $("missionScore").textContent =
+    p.score+"%";
+
+  $("missionProgress").style.width =
+    p.score+"%";
+
+  $("missionSummary").textContent =
+    p.summary;
+
+
+  $("equipmentList").innerHTML =
+    p.equipment.map(item=>`
+
+      <div class="equipment-item">
+        🧰 ${item}
+      </div>
+
+    `).join("");
+
+
+  $("lifeText").textContent =
+    p.life;
+
+
+  updateExploration();
+
+  updateMissionLog();
+
+  updateAchievements();
+
+  calculateTransformation();
+
+  if(notify){
+
+    showToast(
+      "🛰️ Destino seleccionado: "+p.name
+    );
+
+    playTone();
+
+  }
+
+}
+
+
+/* =========================================================
+   EXPLORACIÓN
+========================================================= */
+
+function updateExploration(){
+
+  const percentage =
+    Math.round(
+      visitedPlanets.size /
+      planets.length * 100
+    );
+
+  $("explorationPercent").textContent =
+    percentage+"%";
+
+  $("explorationBar").style.width =
+    percentage+"%";
+
+  document
+    .querySelectorAll(".planet-select-button")
+    .forEach(button=>{
+
+      button.classList.toggle(
+        "active",
+        Number(button.dataset.index)
+        === currentPlanetIndex
+      );
+
+    });
+
+}
+
+
+/* =========================================================
+   REGISTRO
+========================================================= */
+
+function updateMissionLog(){
+
+  const count =
+    visitedPlanets.size;
+
+  $("visitedCount").textContent =
+    `${count} / ${planets.length}`;
+
+  $("currentMissionPlanet").textContent =
+    planets[currentPlanetIndex].name;
+
+
+  let rank =
+    "Cadete espacial";
+
+  if(count>=3)
+    rank="Navegante orbital";
+
+  if(count>=5)
+    rank="Explorador planetario";
+
+  if(count===8)
+    rank="Comandante del sistema solar";
+
+  $("explorerRank").textContent =
+    rank;
+
+}
+
+
+/* =========================================================
+   LOGROS
+========================================================= */
+
+function updateAchievements(){
+
+  const count =
+    visitedPlanets.size;
+
+  const achievements = [
+
+    {
+      icon:"🌎",
+      title:"Primer contacto",
+      text:"Explora un planeta",
+      unlocked:count>=1
+    },
+
+    {
+      icon:"🪐",
+      title:"Navegante",
+      text:"Explora 3 mundos",
+      unlocked:count>=3
+    },
+
+    {
+      icon:"🚀",
+      title:"Explorador",
+      text:"Explora 5 mundos",
+      unlocked:count>=5
+    },
+
+    {
+      icon:"👑",
+      title:"Comandante",
+      text:"Explora todo el sistema",
+      unlocked:count>=8
+    }
+
+  ];
+
+  $("achievementList").innerHTML =
+    achievements.map(a=>`
+
+      <div class="achievement
+        ${a.unlocked ? "unlocked":""}">
+
+        <div class="achievement-icon">
+          ${a.icon}
+        </div>
+
+        <strong>
+          ${a.title}
+        </strong>
+
+        <small>
+          ${a.text}
+        </small>
+
+      </div>
+
+    `).join("");
+
+}
+
+
+/* =========================================================
+   TABS
+========================================================= */
+
+document
+.querySelectorAll(".tab-button")
+.forEach(button=>{
+
+  button.addEventListener(
+    "click",
+    ()=>{
+
+      document
+      .querySelectorAll(".tab-button")
+      .forEach(b=>
+        b.classList.remove("active")
+      );
+
+      document
+      .querySelectorAll(".tab-panel")
+      .forEach(p=>
+        p.classList.remove("active")
+      );
+
+      button.classList.add("active");
+
+      const target =
+        $(button.dataset.tab);
+
+      if(target)
+        target.classList.add("active");
+
+    }
+  );
+
+});
+
+
+/* =========================================================
+   ROTACIÓN
+========================================================= */
+
+$("toggleRotation")
+.addEventListener(
+  "click",
+  ()=>{
+
+    rotationPaused =
+      !rotationPaused;
+
+    planet.classList.toggle(
+      "paused",
+      rotationPaused
+    );
+
+    $("toggleRotation").textContent =
+      rotationPaused
+      ? "▶ REANUDAR"
+      : "⏸ PAUSAR ROTACIÓN";
+
+  }
+);
+
+
+$("rotateLeft")
+.addEventListener(
+  "click",
+  ()=>{
+
+    rotationDegrees -= 25;
+
+    planet.style.transform =
+      `rotate(${rotationDegrees}deg)`;
+
+  }
+);
+
+
+$("rotateRight")
+.addEventListener(
+  "click",
+  ()=>{
+
+    rotationDegrees += 25;
+
+    planet.style.transform =
+      `rotate(${rotationDegrees}deg)`;
+
+  }
+);
+
+
+/* =========================================================
+   ARRASTRAR
+========================================================= */
+
+planet.addEventListener(
+  "pointerdown",
+  e=>{
+
+    dragging=true;
+
+    dragStartX=e.clientX;
+
+    dragStartRotation=
+      rotationDegrees;
+
+    planet.setPointerCapture(
+      e.pointerId
+    );
+
+  }
+);
+
+planet.addEventListener(
+  "pointermove",
+  e=>{
+
+    if(!dragging) return;
+
+    const diff =
+      e.clientX-dragStartX;
+
+    rotationDegrees =
+      dragStartRotation+diff;
+
+    planet.style.transform =
+      `rotate(${rotationDegrees}deg)`;
+
+  }
+);
+
+planet.addEventListener(
+  "pointerup",
+  ()=>{
+    dragging=false;
+  }
+);
+
+
+/* =========================================================
+   CALCULADORA
+========================================================= */
+
+function calculateTransformation(){
+
+  const weight =
+    Number($("earthWeight").value);
+
+  const age =
+    Number($("earthAge").value);
+
+  const p =
+    planets[currentPlanetIndex];
+
+  if(!weight || !age) return;
+
+  const newWeight =
+    weight*p.gravity;
+
+  const newAge =
+    age/p.orbitalPeriod;
+
+  $("weightResult").textContent =
+    newWeight.toFixed(1)+" kg";
+
+  $("ageResult").textContent =
+    newAge.toFixed(1)+" años";
+
+}
+
+$("calculateButton")
+.addEventListener(
+  "click",
+  ()=>{
+
+    calculateTransformation();
+
+    showToast(
+      "🧪 Simulación completada"
+    );
+
+    playTone();
+
+  }
+);
+
+
+/* =========================================================
+   EVENTO ALEATORIO
+========================================================= */
+
+function generateEvent(){
+
+  const p =
+    planets[currentPlanetIndex];
+
+  const event =
+    p.events[
+      Math.floor(
+        Math.random()*p.events.length
+      )
+    ];
+
+  $("eventTitle").textContent =
+    event;
+
+  showToast(
+    "⚡ Evento detectado"
+  );
+
+  playTone();
+
+}
+
+
+/* =========================================================
+   MODALES
+========================================================= */
+
+function openModal(title,content){
+
+  modalTitle.textContent =
+    title;
+
+  modalContent.innerHTML =
+    content;
+
+  modal.classList.add("active");
+
+  document.body.style.overflow =
+    "hidden";
+
+}
+
+function closeModal(){
+
+  modal.classList.remove("active");
+
+  document.body.style.overflow =
+    "";
+
+}
+
+$("closeModal")
+.addEventListener(
+  "click",
+  closeModal
+);
+
+modal.addEventListener(
+  "click",
+  e=>{
+
+    if(e.target===modal)
+      closeModal();
+
+  }
+);
+
+document.addEventListener(
+  "keydown",
+  e=>{
+
+    if(e.key==="Escape")
+      closeModal();
+
+  }
+);
+
+
+/* =========================================================
+   PLANETAS MODAL
+========================================================= */
+
+function openPlanetsModal(){
+
+  const html = `
+
+    <p>
+      Selecciona un planeta para transportarte
+      directamente a su estación de investigación.
+    </p>
+
+    <div class="modal-planets-grid">
+
+      ${planets.map((p,i)=>`
+
+        <button
+          type="button"
+          class="modal-planet-button"
+          data-planet="${i}">
+
+          <strong>
+            ${p.name}
+          </strong>
+
+          <span>
+            ${p.type}
+          </span>
+
+        </button>
+
+      `).join("")}
+
+    </div>
+
+  `;
+
+  openModal(
+    "🪐 MAPA DE DESTINOS",
+    html
+  );
+
+
+  document
+  .querySelectorAll("[data-planet]")
+  .forEach(button=>{
+
+    button.addEventListener(
+      "click",
+      ()=>{
+
+        const index =
+          Number(
+            button.dataset.planet
+          );
+
+        selectPlanet(index);
+
+        closeModal();
+
+        setTimeout(
+          showPlanetInfo,
+          150
+        );
+
+      }
+    );
+
+  });
+
+}
+
+
+/* =========================================================
+   INFORMACIÓN COMPLETA
+========================================================= */
+
+function showPlanetInfo(){
+
+  const p =
+    planets[currentPlanetIndex];
+
+  const html = `
+
+    <div class="quick-planet">
+
+      <div class="quick-box">
+
+        <h3>
+          📡 DESCRIPCIÓN
+        </h3>
+
+        <p>
+          ${p.description}
+        </p>
+
+        <p>
+          <b>✦ Dato curioso</b><br>
+          ${p.fact}
+        </p>
+
+      </div>
+
+
+      <div class="quick-box">
+
+        <h3>
+          📊 DATOS CIENTÍFICOS
+        </h3>
+
+        ${p.stats.map(s=>`
+
+          <div class="quick-stat">
+
+            <span>
+              ${s[0]}
+            </span>
+
+            <strong>
+              ${s[1]}
+            </strong>
+
+          </div>
+
+        `).join("")}
+
+      </div>
+
+
+      <div class="quick-box">
+
+        <h3>
+          ⚠️ EVENTOS
+        </h3>
+
+        ${p.events.map(e=>`
+
+          <div class="event-item">
+            ⚠️ ${e}
+          </div>
+
+        `).join("")}
+
+      </div>
+
+
+      <div class="quick-box">
+
+        <h3>
+          🚀 COLONIA HUMANA
+        </h3>
+
+        <p>
+          ${p.summary}
+        </p>
+
+        <p>
+          Viabilidad:
+          <strong>
+            ${p.score}%
+          </strong>
+        </p>
+
+        ${p.equipment.map(e=>`
+
+          <div class="equipment-item">
+            🧰 ${e}
+          </div>
+
+        `).join("")}
+
+      </div>
+
+    </div>
+
+  `;
+
+  openModal(
+    "📖 "+p.name,
+    html
+  );
+
+}
+
+
+/* =========================================================
+   SIMULACIÓN HUMANA
+========================================================= */
+
+function openLifeSimulation(){
+
+  const p =
+    planets[currentPlanetIndex];
+
+  let shelter;
+  let mobility;
+  let resources;
+
+  if(p.score>=80){
+
+    shelter="Hábitats abiertos y estructuras convencionales";
+    mobility="Vehículos normales";
+    resources="Disponibilidad elevada";
+
+  }else if(p.score>=30){
+
+    shelter="Hábitats presurizados y protegidos";
+    mobility="Vehículos especializados";
+    resources="Recursos limitados";
+
+  }else{
+
+    shelter="Refugios altamente especializados";
+    mobility="Sistemas robóticos y vehículos avanzados";
+    resources="Recursos extremadamente limitados";
+
+  }
+
+
+  const html = `
+
+    <div class="simulation-grid">
+
+      <div class="simulation-card">
+
+        <span>🏠 HÁBITAT</span>
+
+        <strong>
+          ${shelter}
+        </strong>
+
+        <p>
+          Una hipotética colonia tendría que adaptar
+          sus estructuras a las condiciones del planeta.
+        </p>
+
+      </div>
+
+
+      <div class="simulation-card">
+
+        <span>🚙 MOVILIDAD</span>
+
+        <strong>
+          ${mobility}
+        </strong>
+
+        <p>
+          El transporte dependería del terreno,
+          la atmósfera y las condiciones ambientales.
+        </p>
+
+      </div>
+
+
+      <div class="simulation-card">
+
+        <span>💧 RECURSOS</span>
+
+        <strong>
+          ${resources}
+        </strong>
+
+        <p>
+          El acceso a agua, energía y materiales
+          determinaría la duración de una colonia.
+        </p>
+
+      </div>
+
+
+      <div class="simulation-card">
+
+        <span>🌡️ TEMPERATURA</span>
+
+        <strong>
+          ${p.temperature}
+        </strong>
+
+        <p>
+          La temperatura sería uno de los factores
+          fundamentales para diseñar los hábitats.
+        </p>
+
+      </div>
+
+
+      <div class="simulation-card">
+
+        <span>🌍 GRAVEDAD</span>
+
+        <strong>
+          ${p.gravity} g
+        </strong>
+
+        <p>
+          La gravedad afectaría el movimiento,
+          el transporte y las actividades cotidianas.
+        </p>
+
+      </div>
+
+
+      <div class="simulation-card">
+
+        <span>🧑‍🚀 RESULTADO</span>
+
+        <strong>
+          ${p.score}% VIABILIDAD
+        </strong>
+
+        <p>
+          ${p.life}
+        </p>
+
+      </div>
+
+    </div>
+
+  `;
+
+  openModal(
+    "🧑‍🚀 SIMULACIÓN DE COLONIA // "+p.name,
+    html
+  );
+
+}
+
+
+/* =========================================================
+   LABORATORIO MODAL
+========================================================= */
+
+function openLabModal(){
+
+  const p =
+    planets[currentPlanetIndex];
+
+  const html = `
+
+    <div class="modal-lab">
+
+      <p>
+        Estación gravitacional conectada a:
+        <strong>${p.name}</strong>
+      </p>
+
+
+      <div class="modal-input">
+
+        <label>
+          Peso terrestre
+        </label>
+
+        <input
+          id="modalWeight"
+          type="number"
+          value="70"
+          min="1"
+        >
+
+      </div>
+
+
+      <div class="modal-input">
+
+        <label>
+          Edad terrestre
+        </label>
+
+        <input
+          id="modalAge"
+          type="number"
+          value="20"
+          min="1"
+        >
+
+      </div>
+
+
+      <button
+        id="modalCalculate"
+        class="primary-button"
+        type="button">
+
+        🧪 EJECUTAR SIMULACIÓN
+
+      </button>
+
+
+      <div
+        id="modalLabResult"
+        class="modal-result">
+
+        Esperando datos...
+
+      </div>
+
+    </div>
+
+  `;
+
+  openModal(
+    "🔬 LABORATORIO GRAVITACIONAL",
+    html
+  );
+
+
+  $("modalCalculate")
+  .addEventListener(
+    "click",
+    ()=>{
+
+      const weight =
+        Number($("modalWeight").value);
+
+      const age =
+        Number($("modalAge").value);
+
+      const resultWeight =
+        weight*p.gravity;
+
+      const resultAge =
+        age/p.orbitalPeriod;
+
+      $("modalLabResult").innerHTML = `
+
+        Peso en ${p.name}:
+
+        <strong>
+          ${resultWeight.toFixed(1)} kg
+        </strong>
+
+        <br><br>
+
+        Edad planetaria:
+
+        <strong>
+          ${resultAge.toFixed(1)} años
+        </strong>
+
+      `;
+
+      playTone();
+
+    }
+  );
+
+}
+
+
+/* =========================================================
+   MISIÓN MODAL
+========================================================= */
+
+function openMissionModal(){
+
+  const count =
+    visitedPlanets.size;
+
+  const html = `
+
+    <div class="mission-modal">
+
+      <p>
+        ESTADO DE LA EXPEDICIÓN
+      </p>
+
+      <div class="mission-number">
+        ${count}/8
+      </div>
+
+      <p>
+        mundos explorados
+      </p>
+
+      <h3>
+        🏅 ${$("explorerRank").textContent}
+      </h3>
+
+
+      <div class="modal-mission-grid">
+
+        <div class="modal-mission-item">
+          🌎 Destino actual<br>
+          <strong>
+            ${planets[currentPlanetIndex].name}
+          </strong>
+        </div>
+
+        <div class="modal-mission-item">
+          📊 Viabilidad<br>
+          <strong>
+            ${planets[currentPlanetIndex].score}%
+          </strong>
+        </div>
+
+        <div class="modal-mission-item">
+          🧭 Exploración<br>
+          <strong>
+            ${Math.round(count/8*100)}%
+          </strong>
+        </div>
+
+        <div class="modal-mission-item">
+          🚀 Estado<br>
+          <strong>
+            EXPEDICIÓN ACTIVA
+          </strong>
+        </div>
+
+      </div>
+
+    </div>
+
+  `;
+
+  openModal(
+    "🚀 CENTRO DE MISIÓN",
+    html
+  );
+
+}
+
+
+/* =========================================================
+   SORPRESA
+========================================================= */
+
+function surprisePlanet(){
+
+  const index =
+    Math.floor(
+      Math.random()*planets.length
+    );
+
+  selectPlanet(index,false);
+
+  const p =
+    planets[index];
+
+  const event =
+    p.events[
+      Math.floor(
+        Math.random()*p.events.length
+      )
+    ];
+
+  const icons=[
+    "🌌",
+    "☄️",
+    "⚡",
+    "🛰️",
+    "🔭",
+    "👽"
+  ];
+
+  const icon =
+    icons[
+      Math.floor(
+        Math.random()*icons.length
+      )
+    ];
+
+
+  openModal(
+
+    "🎲 EVENTO CÓSMICO",
+
+    `
+
+      <div class="surprise-card">
+
+        <div class="surprise-icon">
+          ${icon}
+        </div>
+
+        <p>
+          NUEVO DESTINO DETECTADO
+        </p>
+
+        <h3>
+          ${p.name}
+        </h3>
+
+        <p>
+          El sistema ha detectado
+          una situación hipotética:
+        </p>
+
+        <div class="event-item">
+          ⚠️ ${event}
+        </div>
+
+        <p>
+          El planeta ha sido añadido
+          a tu registro de exploración.
+        </p>
+
+      </div>
+
+    `
+
+  );
+
+  updateMissionLog();
+  updateAchievements();
+
+  playTone();
+
+}
+
+
+/* =========================================================
+   MAPA HOLOGRÁFICO
+========================================================= */
+
+function openMap(){
+
+  const positions=[
+    [50,18],
+    [50,27],
+    [50,37],
+    [50,47],
+    [50,59],
+    [50,71],
+    [50,82],
+    [50,93]
+  ];
+
+  const html = `
+
+    <div class="map-screen">
+
+      <div class="map-sun"></div>
+
+      ${planets.map((p,i)=>{
+
+        const y =
+          positions[i][1];
+
+        const angle =
+          i%2===0 ? -1 : 1;
+
+        const x =
+          50 + angle*(12+i*4);
+
+        return `
+
+          <div
+            class="map-orbit"
+            style="
+              width:${120+i*35}px;
+              height:${120+i*35}px;
+            ">
+          </div>
+
+
+          <button
+            class="map-planet"
+            data-map-planet="${i}"
+            style="
+              left:${x}%;
+              top:${y}%;
+              width:${12+i*2}px;
+              height:${12+i*2}px;
+            "
+            title="${p.name}">
+          </button>
+
+          <span
+            class="map-label"
+            style="
+              left:${x}%;
+              top:${y}%;
+            ">
+            ${p.name}
+          </span>
+
+        `;
+
+      }).join("")}
+
+    </div>
+
+  `;
+
+  openModal(
+    "🗺️ MAPA HOLOGRÁFICO",
+    html
+  );
+
+
+  document
+  .querySelectorAll("[data-map-planet]")
+  .forEach(button=>{
+
+    button.addEventListener(
+      "click",
+      ()=>{
+
+        const index =
+          Number(
+            button.dataset.mapPlanet
+          );
+
+        selectPlanet(index);
+
+        closeModal();
+
+        setTimeout(
+          showPlanetInfo,
+          150
+        );
+
+      }
+    );
+
+  });
+
+}
+
+
+/* =========================================================
+   CENTRO DE MANDO
+========================================================= */
+
+$("openPlanetsButton")
+.addEventListener(
+  "click",
+  openPlanetsModal
+);
+
+
+$("openLabButton")
+.addEventListener(
+  "click",
+  openLabModal
+);
+
+
+$("openMissionButton")
+.addEventListener(
+  "click",
+  openMissionModal
+);
+
+
+$("surpriseButton")
+.addEventListener(
+  "click",
+  surprisePlanet
+);
+
+
+$("openMapButton")
+.addEventListener(
+  "click",
+  openMap
+);
+
+
+$("openPlanetInfoButton")
+.addEventListener(
+  "click",
+  showPlanetInfo
+);
+
+
+$("simulateLifeButton")
+.addEventListener(
+  "click",
+  openLifeSimulation
+);
+
+
+$("openLifeButton")
+.addEventListener(
+  "click",
+  openLifeSimulation
+);
+
+
+$("generateEventButton")
+.addEventListener(
+  "click",
+  generateEvent
+);
+
+
+$("startMissionButton")
+.addEventListener(
+  "click",
+  openPlanetsModal
+);
+
+
+$("randomPlanetButton")
+.addEventListener(
+  "click",
+  surprisePlanet
+);
+
+
+/* =========================================================
+   PAUSA GLOBAL
+========================================================= */
+
+$("pauseButton")
+.addEventListener(
+  "click",
+  ()=>{
+
+    globalPaused =
+      !globalPaused;
+
+    document.body.classList.toggle(
+      "paused",
+      globalPaused
+    );
+
+    $("pauseButton").textContent =
+      globalPaused ? "▶" : "⏸";
+
+    showToast(
+      globalPaused
+      ? "⏸ Sistema pausado"
+      : "▶ Sistema reactivado"
+    );
+
+  }
+);
+
+
+/* =========================================================
+   SONIDO
+========================================================= */
+
+function playTone(){
+
+  if(!soundEnabled)
+    return;
+
+  try{
+
+    if(!audioContext){
+
+      audioContext =
+        new(
+          window.AudioContext ||
+          window.webkitAudioContext
+        )();
+
+    }
+
+    const oscillator =
+      audioContext.createOscillator();
+
+    const gain =
+      audioContext.createGain();
+
+    oscillator.type="sine";
+
+    oscillator.frequency.value=520;
+
+    gain.gain.setValueAtTime(
+      .05,
+      audioContext.currentTime
+    );
+
+    gain.gain.exponentialRampToValueAtTime(
+      .001,
+      audioContext.currentTime+.16
+    );
+
+    oscillator.connect(gain);
+    gain.connect(audioContext.destination);
+
+    oscillator.start();
+
+    oscillator.stop(
+      audioContext.currentTime+.16
+    );
+
+  }catch(error){
+
+    console.log(
+      "Audio no disponible"
+    );
+
+  }
+
+}
+
+
+$("soundButton")
+.addEventListener(
+  "click",
+  ()=>{
+
+    soundEnabled =
+      !soundEnabled;
+
+    $("soundButton").textContent =
+      soundEnabled ? "🔊":"🔇";
+
+    if(soundEnabled)
+      playTone();
+
+    showToast(
+      soundEnabled
+      ? "🔊 Sonido activado"
+      : "🔇 Sonido desactivado"
+    );
+
+  }
+);
+
+
+/* =========================================================
+   PANTALLA COMPLETA
+========================================================= */
+
+$("fullscreenButton")
+.addEventListener(
+  "click",
+  async()=>{
+
+    try{
+
+      if(!document.fullscreenElement){
+
+        await document.documentElement
+          .requestFullscreen();
+
+      }else{
+
+        await document.exitFullscreen();
+
+      }
+
+    }catch(error){
+
+      showToast(
+        "Pantalla completa no disponible"
+      );
+
+    }
+
+  }
+);
+
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+function showToast(message){
+
+  const toast =
+    $("toast");
+
+  toast.textContent =
+    message;
+
+  toast.classList.add("show");
+
+  clearTimeout(toastTimer);
+
+  toastTimer =
+    setTimeout(
+      ()=>{
+        toast.classList.remove("show");
+      },
+      2300
+    );
+
+}
+
+
+/* =========================================================
+   INICIALIZACIÓN
+========================================================= */
+
+createSpace();
+
+createSelector();
+
+selectPlanet(0,false);
+
+calculateTransformation();
+
+updateAchievements();
+
+console.log(
+  "🚀 ATLAS CÓSMICO // SISTEMA OPERATIVO"
+);/* =========================================================
+   CONEXIÓN FUNCIONAL:
+   MAPA HOLOGRÁFICO + SIMULACIÓN HUMANA
+   ========================================================= */
+
+(function () {
+  "use strict";
+
+  document.addEventListener("DOMContentLoaded", iniciarFuncionesExtra);
+
+  function iniciarFuncionesExtra() {
+
+    /* -----------------------------------------------------
+       DATOS DE RESPALDO
+       Si tu código anterior ya tiene "planets", se utilizará
+       automáticamente.
+       ----------------------------------------------------- */
+
+    const datosPlanetas = [
+      {
+        id: "mercury",
+        name: "Mercurio",
+        emoji: "☿",
+        gradient: "radial-gradient(circle at 30% 30%, #d8d8d8, #777 55%, #292929)",
+        gravity: 0.38,
+        temperature: "≈ 167 °C",
+        atmosphere: "Extremadamente tenue",
+        danger: "Radiación y temperaturas extremas"
+      },
+      {
+        id: "venus",
+        name: "Venus",
+        emoji: "♀",
+        gradient: "radial-gradient(circle at 35% 30%, #fff0a6, #d49b3e 55%, #704017)",
+        gravity: 0.90,
+        temperature: "≈ 464 °C",
+        atmosphere: "CO₂ dominante",
+        danger: "Calor y presión extrema"
+      },
+      {
+        id: "earth",
+        name: "Tierra",
+        emoji: "🌎",
+        gradient: "radial-gradient(circle at 35% 30%, #7cecff, #2174d8 45%, #07365d)",
+        gravity: 1,
+        temperature: "≈ 15 °C",
+        atmosphere: "N₂ + O₂",
+        danger: "Condiciones habitables"
+      },
+      {
+        id: "mars",
+        name: "Marte",
+        emoji: "♂",
+        gradient: "radial-gradient(circle at 30% 30%, #ffb078, #bd4d2f 50%, #542018)",
+        gravity: 0.38,
+        temperature: "≈ -63 °C",
+        atmosphere: "CO₂ muy tenue",
+        danger: "Frío y radiación"
+      },
+      {
+        id: "jupiter",
+        name: "Júpiter",
+        emoji: "♃",
+        gradient: "linear-gradient(160deg,#d9c19d,#a97856,#f0d8aa,#91604b)",
+        gravity: 2.53,
+        temperature: "≈ -110 °C",
+        atmosphere: "H₂ + He",
+        danger: "Presión y tormentas extremas"
+      },
+      {
+        id: "saturn",
+        name: "Saturno",
+        emoji: "♄",
+        gradient: "linear-gradient(160deg,#f3dfad,#c8a96d,#8c704d)",
+        gravity: 1.07,
+        temperature: "≈ -140 °C",
+        atmosphere: "H₂ + He",
+        danger: "Frío, presión y radiación"
+      },
+      {
+        id: "uranus",
+        name: "Urano",
+        emoji: "♅",
+        gradient: "radial-gradient(circle at 35% 30%, #bfffff, #69c7cf 55%, #357a88)",
+        gravity: 0.89,
+        temperature: "≈ -195 °C",
+        atmosphere: "H₂ + He + CH₄",
+        danger: "Frío extremo"
+      },
+      {
+        id: "neptune",
+        name: "Neptuno",
+        emoji: "♆",
+        gradient: "radial-gradient(circle at 35% 30%, #83b9ff, #315ac5 55%, #10245e)",
+        gravity: 1.14,
+        temperature: "≈ -200 °C",
+        atmosphere: "H₂ + He + CH₄",
+        danger: "Vientos extremos"
+      }
+    ];
+
+    /* -----------------------------------------------------
+       BUSCAR PLANETA ACTUAL DEL CÓDIGO ANTERIOR
+       ----------------------------------------------------- */
+
+    function obtenerPlanetaActual() {
+
+      try {
+        if (
+          typeof currentPlanetIndex !== "undefined" &&
+          typeof planets !== "undefined" &&
+          planets[currentPlanetIndex]
+        ) {
+          const original = planets[currentPlanetIndex];
+
+          const respaldo =
+            datosPlanetas.find(p => p.id === original.id) ||
+            datosPlanetas[currentPlanetIndex];
+
+          return {
+            ...respaldo,
+            ...original,
+            gravity:
+              Number(original.gravity) ||
+              respaldo.gravity
+          };
+        }
+      } catch (error) {
+        console.log("Usando datos de respaldo.");
+      }
+
+      return datosPlanetas[0];
+    }
+
+    /* -----------------------------------------------------
+       CREAR VENTANA
+       ----------------------------------------------------- */
+
+    const overlay = document.createElement("div");
+    overlay.className = "holo-overlay";
+    overlay.id = "cosmicExtraOverlay";
+
+    document.body.appendChild(overlay);
+
+    function cerrarVentana() {
+      overlay.classList.remove("active");
+      document.body.style.overflow = "";
+    }
+
+    function abrirVentana(contenido) {
+      overlay.innerHTML = contenido;
+      overlay.classList.add("active");
+      document.body.style.overflow = "hidden";
+    }
+
+    overlay.addEventListener("click", function (event) {
+      if (
+        event.target === overlay ||
+        event.target.closest("[data-close-cosmic]")
+      ) {
+        cerrarVentana();
+      }
+    });
+
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape") {
+        cerrarVentana();
+      }
+    });
+
+    /* =====================================================
+       MAPA HOLOGRÁFICO
+       ===================================================== */
+
+    function abrirMapaHolografico() {
+
+      const posiciones = [
+        { x: 50, y: 50, orbit: 120 },
+        { x: 50, y: 50, orbit: 170 },
+        { x: 50, y: 50, orbit: 225 },
+        { x: 50, y: 50, orbit: 285 },
+        { x: 50, y: 50, orbit: 350 },
+        { x: 50, y: 50, orbit: 420 },
+        { x: 50, y: 50, orbit: 490 },
+        { x: 50, y: 50, orbit: 555 }
+      ];
+
+      const planetButtons = datosPlanetas.map((p, index) => {
+
+        const angle = index * 45 - 90;
+        const radius = posiciones[index].orbit;
+
+        const x =
+          50 +
+          Math.cos(angle * Math.PI / 180) *
+          (radius / 9);
+
+        const y =
+          50 +
+          Math.sin(angle * Math.PI / 180) *
+          (radius / 6);
+
+        return `
+          <button
+            type="button"
+            class="holo-planet"
+            data-holo-planet="${index}"
+            style="
+              left:${x}%;
+              top:${y}%;
+              background:${p.gradient};
+            "
+            title="Explorar ${p.name}"
+          >
+            ${p.emoji}
+            <span>${p.name}</span>
+          </button>
+        `;
+      }).join("");
+
+      const orbitHTML = posiciones.map(p => `
+        <div
+          class="holo-orbit"
+          style="
+            width:${p.orbit}px;
+            height:${p.orbit}px;
+          "
+        ></div>
+      `).join("");
+
+      abrirVentana(`
+        <div class="holo-window">
+
+          <div class="holo-header">
+            <div>
+              <h2 class="holo-title">
+                ◈ MAPA HOLOGRÁFICO
+              </h2>
+              <p class="holo-status">
+                SISTEMA SOLAR · NAVEGACIÓN INTERACTIVA · SISTEMA ACTIVO
+              </p>
+            </div>
+
+            <button
+              type="button"
+              class="holo-close"
+              data-close-cosmic
+            >✕</button>
+          </div>
+
+          <div
+            class="holo-map"
+            id="holographicMap"
+          >
+
+            <div class="holo-grid"></div>
+            <div class="holo-scanline"></div>
+
+            <div
+              class="holo-map-world"
+              id="holoWorld"
+            >
+
+              ${orbitHTML}
+
+              <div class="holo-sun">
+                ☀
+              </div>
+
+              ${planetButtons}
+
+            </div>
+
+            <div class="holo-controls">
+
+              <button
+                type="button"
+                class="holo-control"
+                data-holo-zoom="in"
+              >+</button>
+
+              <button
+                type="button"
+                class="holo-control"
+                data-holo-zoom="reset"
+              >◎</button>
+
+              <button
+                type="button"
+                class="holo-control"
+                data-holo-zoom="out"
+              >−</button>
+
+            </div>
+
+            <div class="holo-info">
+              <strong>RADAR PLANETARIO</strong>
+              <p>
+                Selecciona cualquier planeta para abrir
+                inmediatamente su información y simulación.
+              </p>
+            </div>
+
+          </div>
+        </div>
+      `);
+
+      conectarMapa();
+    }
+
+    function conectarMapa() {
+
+      const world = document.getElementById("holoWorld");
+      const map = document.getElementById("holographicMap");
+
+      if (!world || !map) return;
+
+      let zoom = 1;
+      let dragging = false;
+      let startX = 0;
+      let startY = 0;
+      let offsetX = 0;
+      let offsetY = 0;
+
+      function actualizarMapa() {
+
+        world.style.transform =
+          `translate(calc(-50% + ${offsetX}px), calc(-50% + ${offsetY}px)) scale(${zoom})`;
+      }
+
+      document
+        .querySelectorAll("[data-holo-zoom]")
+        .forEach(button => {
+
+          button.addEventListener("click", function () {
+
+            const action = this.dataset.holoZoom;
+
+            if (action === "in") {
+              zoom = Math.min(1.8, zoom + 0.15);
+            }
+
+            if (action === "out") {
+              zoom = Math.max(.55, zoom - 0.15);
+            }
+
+            if (action === "reset") {
+              zoom = 1;
+              offsetX = 0;
+              offsetY = 0;
+            }
+
+            actualizarMapa();
+          });
+        });
+
+      map.addEventListener("pointerdown", function (event) {
+
+        if (event.target.closest(".holo-planet")) return;
+
+        dragging = true;
+        startX = event.clientX;
+        startY = event.clientY;
+
+        map.setPointerCapture(event.pointerId);
+      });
+
+      map.addEventListener("pointermove", function (event) {
+
+        if (!dragging) return;
+
+        offsetX += event.clientX - startX;
+        offsetY += event.clientY - startY;
+
+        startX = event.clientX;
+        startY = event.clientY;
+
+        actualizarMapa();
+      });
+
+      map.addEventListener("pointerup", function () {
+        dragging = false;
+      });
+
+      document
+        .querySelectorAll("[data-holo-planet]")
+        .forEach(button => {
+
+          button.addEventListener("click", function () {
+
+            const index = Number(this.dataset.holoPlanet);
+
+            seleccionarDesdeMapa(index);
+          });
+        });
+    }
+
+    function seleccionarDesdeMapa(index) {
+
+      /* Conecta con el selector original */
+      try {
+
+        if (typeof selectPlanet === "function") {
+          selectPlanet(index, true);
+        }
+
+      } catch (error) {
+        console.log("No fue posible conectar selectPlanet.");
+      }
+
+      cerrarVentana();
+
+      setTimeout(function () {
+        abrirSimulacion(index);
+      }, 250);
+    }
+
+    /* =====================================================
+       SIMULACIÓN HUMANA
+       ===================================================== */
+
+    function abrirSimulacion(index) {
+
+      const planeta =
+        datosPlanetas[index] ||
+        obtenerPlanetaActual();
+
+      let planetaOriginal = null;
+
+      try {
+
+        if (
+          typeof planets !== "undefined" &&
+          planets[index]
+        ) {
+          planetaOriginal = planets[index];
+        }
+
+      } catch (error) {}
+
+      const descripcion =
+        planetaOriginal?.description ||
+        `Una colonia humana en ${planeta.name} necesitaría sistemas especializados para mantener condiciones seguras.`;
+
+      const score =
+        planetaOriginal?.score ??
+        calcularViabilidad(planeta);
+
+      const simulacion =
+        crearEscenario(planeta);
+
+      abrirVentana(`
+
+        <div class="holo-window simulation-window">
+
+          <div class="holo-header">
+
+            <div>
+              <h2 class="holo-title">
+                🧑‍🚀 SIMULACIÓN HUMANA
+              </h2>
+
+              <p class="holo-status">
+                PROYECCIÓN HIPOTÉTICA · ${planeta.name.toUpperCase()}
+              </p>
+            </div>
+
+            <button
+              type="button"
+              class="holo-close"
+              data-close-cosmic
+            >✕</button>
+
+          </div>
+
+          <div class="simulation-body">
+
+            <div class="simulation-hero">
+
+              <div
+                class="sim-planet"
+                style="background:${planeta.gradient};"
+              ></div>
+
+              <div>
+
+                <h2>
+                  ¿Cómo sería vivir en ${planeta.name}?
+                </h2>
+
+                <p class="sim-intro">
+                  ${descripcion}
+                </p>
+
+                <div class="sim-scenario">
+
+                  <h3>
+                    🚀 Escenario hipotético
+                  </h3>
+
+                  <p>
+                    ${simulacion}
+                  </p>
+
+                </div>
+
+              </div>
+
+            </div>
+
+            <div class="sim-grid">
+
+              <div class="sim-card">
+                <div class="sim-icon">⚖️</div>
+                <span>Gravedad</span>
+                <strong>${planeta.gravity} g</strong>
+              </div>
+
+              <div class="sim-card">
+                <div class="sim-icon">🌡️</div>
+                <span>Temperatura</span>
+                <strong>${planeta.temperature}</strong>
+              </div>
+
+              <div class="sim-card">
+                <div class="sim-icon">🌫️</div>
+                <span>Atmósfera</span>
+                <strong>${planeta.atmosphere}</strong>
+              </div>
+
+              <div class="sim-card">
+                <div class="sim-icon">⚠️</div>
+                <span>Principal desafío</span>
+                <strong>${planeta.danger}</strong>
+              </div>
+
+              <div class="sim-card">
+                <div class="sim-icon">📊</div>
+                <span>Viabilidad estimada</span>
+                <strong>${score}%</strong>
+              </div>
+
+              <div class="sim-card">
+                <div class="sim-icon">🛰️</div>
+                <span>Estado de misión</span>
+                <strong>En análisis</strong>
+              </div>
+
+            </div>
+
+            <div class="sim-actions">
+
+              <button
+                type="button"
+                class="sim-button"
+                data-open-holo-map
+              >
+                🗺️ Volver al mapa
+              </button>
+
+              <button
+                type="button"
+                class="sim-button"
+                data-sim-next
+              >
+                ➡️ Simular otro planeta
+              </button>
+
+              <button
+                type="button"
+                class="sim-button"
+                data-close-cosmic
+              >
+                ✓ Finalizar simulación
+              </button>
+
+            </div>
+
+          </div>
+
+        </div>
+      `);
+
+      conectarBotonesSimulacion();
+    }
+
+    function conectarBotonesSimulacion() {
+
+      const mapaButton =
+        document.querySelector("[data-open-holo-map]");
+
+      if (mapaButton) {
+
+        mapaButton.addEventListener("click", function () {
+          abrirMapaHolografico();
+        });
+
+      }
+
+      const nextButton =
+        document.querySelector("[data-sim-next]");
+
+      if (nextButton) {
+
+        nextButton.addEventListener("click", function () {
+
+          const actual = obtenerIndiceActual();
+
+          const siguiente =
+            (actual + 1) % datosPlanetas.length;
+
+          abrirSimulacion(siguiente);
+
+          try {
+            if (typeof selectPlanet === "function") {
+              selectPlanet(siguiente, true);
+            }
+          } catch (error) {}
+
+        });
+
+      }
+    }
+
+    /* =====================================================
+       ESCENARIOS
+       ===================================================== */
+
+    function crearEscenario(planeta) {
+
+      const escenarios = {
+
+        mercury:
+          `Los astronautas necesitarían permanecer dentro de instalaciones muy protegidas. 
+          La diferencia extrema entre las condiciones del lado iluminado y el lado nocturno
+          obligaría a controlar cuidadosamente la temperatura y la exposición a la radiación.`,
+
+        venus:
+          `Una colonia en la superficie tendría enormes dificultades debido al calor y la presión.
+          Un escenario más realista sería estudiar una estación flotante en capas altas de la atmósfera,
+          donde las condiciones son menos extremas que en la superficie.`,
+
+        earth:
+          `Una colonia humana podría funcionar con infraestructura relativamente convencional.
+          El reto principal sería mantener los recursos, proteger ecosistemas y desarrollar
+          sistemas sostenibles para una población creciente.`,
+
+        mars:
+          `Una colonia necesitaría hábitats presurizados, protección frente a la radiación,
+          sistemas para obtener agua y una producción controlada de alimentos. 
+          Los astronautas pasarían gran parte del tiempo dentro de estructuras protegidas.`,
+
+        jupiter:
+          `Júpiter no tiene una superficie sólida donde establecer una colonia convencional.
+          Una misión humana tendría que utilizar vehículos o estaciones especiales y enfrentaría
+          enormes presiones y condiciones atmosféricas peligrosas.`,
+
+        saturn:
+          `Al igual que Júpiter, Saturno es un gigante gaseoso. Una colonia sobre el planeta
+          no sería viable con tecnología actual; una misión podría centrarse en estaciones
+          espaciales o en algunas de sus lunas.`,
+
+        uranus:
+          `El frío extremo y la composición atmosférica obligarían a utilizar hábitats completamente
+          cerrados. La energía y el aislamiento térmico serían dos de los principales problemas
+          de una misión humana prolongada.`,
+
+        neptune:
+          `Neptuno presenta temperaturas extremadamente bajas y vientos muy rápidos.
+          Una misión humana tendría que operar mediante sistemas completamente artificiales,
+          probablemente desde una nave o estación y no desde una superficie sólida.`
+
+      };
+
+      return escenarios[planeta.id] ||
+        `Una colonia humana necesitaría sistemas de soporte vital, energía, protección ambiental
+        y una infraestructura diseñada específicamente para las condiciones de ${planeta.name}.`;
+    }
+
+    function calcularViabilidad(planeta) {
+
+      if (planeta.id === "earth") return 95;
+      if (planeta.id === "mars") return 42;
+      if (planeta.id === "venus") return 8;
+      if (planeta.id === "mercury") return 12;
+      if (planeta.id === "saturn") return 5;
+      if (planeta.id === "jupiter") return 4;
+      if (planeta.id === "uranus") return 3;
+      if (planeta.id === "neptune") return 2;
+
+      return 10;
+    }
+
+    function obtenerIndiceActual() {
+
+      try {
+
+        if (
+          typeof currentPlanetIndex !== "undefined" &&
+          Number.isInteger(currentPlanetIndex)
+        ) {
+          return currentPlanetIndex;
+        }
+
+      } catch (error) {}
+
+      return 0;
+    }
+
+    /* =====================================================
+       CONECTAR LOS BOTONES QUE YA EXISTEN
+       ===================================================== */
+
+    function conectarBotonesExistentes() {
+
+      const elementos =
+        document.querySelectorAll(
+          "button, a, [role='button']"
+        );
+
+      elementos.forEach(elemento => {
+
+        const texto =
+          elemento.textContent
+            .trim()
+            .toLowerCase()
+            .replace(/\s+/g, " ");
+
+        /*
+         * Busca el botón por su texto.
+         * Así no importa qué ID tenía en el código anterior.
+         */
+
+        if (
+          texto.includes("abrir mapa holográfico") ||
+          texto.includes("mapa holográfico")
+        ) {
+
+          elemento.addEventListener("click", function (event) {
+
+            event.preventDefault();
+
+            abrirMapaHolografico();
+
+          });
+
+        }
+
+        if (
+          texto.includes("simulación humana") ||
+          texto.includes("simulacion humana")
+        ) {
+
+          elemento.addEventListener("click", function (event) {
+
+            event.preventDefault();
+
+            abrirSimulacion(
+              obtenerIndiceActual()
+            );
+
+          });
+
+        }
+
+      });
+    }
+
+    /*
+     * También usamos delegación para botones que el código
+     * anterior pueda crear dinámicamente.
+     */
+
+    document.addEventListener("click", function (event) {
+
+      const mapa =
+        event.target.closest("[data-open-holographic-map]");
+
+      if (mapa) {
+        event.preventDefault();
+        abrirMapaHolografico();
+      }
+
+      const simulacion =
+        event.target.closest("[data-open-human-simulation]");
+
+      if (simulacion) {
+        event.preventDefault();
+        abrirSimulacion(obtenerIndiceActual());
+      }
+
+    });
+
+    conectarBotonesExistentes();
+
+    /* -----------------------------------------------------
+       Exponer funciones para que el código anterior pueda
+       llamarlas si lo necesita.
+       ----------------------------------------------------- */
+
+    window.abrirMapaHolografico = abrirMapaHolografico;
+    window.abrirSimulacionHumana = function () {
+      abrirSimulacion(obtenerIndiceActual());
+    };
+
+  }
+
+})();
